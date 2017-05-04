@@ -20,8 +20,8 @@ class Districts extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'districts';
-    
-    protected $fillable = ['name'];
+
+    protected $fillable = ['name', 'region_id'];
     
 
     public static function boot()
@@ -30,8 +30,15 @@ class Districts extends Model {
 
         Districts::observe(new UserActionsObserver);
     }
-    
-    
-    
+
+    public function region()
+    {
+        return $this->belongsTo(Regions::class);
+    }
+
+    public function cities()
+    {
+        return $this->hasMany(Cities::class);
+    }
     
 }

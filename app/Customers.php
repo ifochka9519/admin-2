@@ -20,8 +20,8 @@ class Customers extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'customers';
-    
-    protected $fillable = ['name'];
+
+    protected $fillable = ['name', 'phone', 'email'];
     
 
     public static function boot()
@@ -29,6 +29,12 @@ class Customers extends Model {
         parent::boot();
 
         Customers::observe(new UserActionsObserver);
+    }
+
+
+    public function clients()
+    {
+        return $this->hasMany(Clients::class);
     }
     
     

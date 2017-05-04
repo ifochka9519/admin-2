@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Май 04 2017 г., 16:32
+-- Время создания: Май 04 2017 г., 17:48
 -- Версия сервера: 5.7.18-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.15-0ubuntu0.16.04.4
 
@@ -31,7 +31,8 @@ CREATE TABLE `addresses` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `city_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -45,7 +46,8 @@ CREATE TABLE `cities` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `district_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -59,7 +61,10 @@ CREATE TABLE `clients` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `customer_id` int(10) UNSIGNED NOT NULL,
+  `manager_id` int(10) UNSIGNED NOT NULL,
+  `address_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -87,7 +92,8 @@ CREATE TABLE `districts` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `region_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -132,7 +138,8 @@ CREATE TABLE `managers` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -324,7 +331,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (27, '2017_05_04_132836_create_managers_table', 15),
 (28, '2017_05_04_132939_create_type_of_visas_table', 16),
 (29, '2017_05_04_133005_create_statuses_table', 17),
-(30, '2017_05_04_133057_create_partners_table', 18);
+(30, '2017_05_04_133057_create_partners_table', 18),
+(31, '2017_05_04_144354_createRelation', 19);
 
 -- --------------------------------------------------------
 
@@ -337,7 +345,11 @@ CREATE TABLE `orders` (
   `scan_order_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `poland_id` int(10) UNSIGNED NOT NULL,
+  `client_id` int(10) UNSIGNED NOT NULL,
+  `status_id` int(10) UNSIGNED NOT NULL,
+  `type_visa_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -351,7 +363,8 @@ CREATE TABLE `partners` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `poland_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -377,7 +390,8 @@ CREATE TABLE `polands` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -506,16 +520,17 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `roles_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin', 'admin@gmail.com', '$2y$10$oR5nyelEYWb/AU2LxPH9FOKqlX58CrIda9DoNRjpPdfh2yNRV1S6.', 'hVVP9M2BtNl75GZ5H5yBKp4G2qTpdFiz5c9SOquRGoSgSIRgRTkeKdUUnhPK', '2017-05-03 11:00:56', '2017-05-03 11:00:56'),
-(2, 3, 'nata', 'admin123@gmail.com', '$2y$10$6D/b8EjfjJ6wq8ad1/pNu.MyHfYvI9rGKOTPSxpQ9GBXVw7gQLpri', 'woSr3KHZwtJE6DvhFdOBndDjUMt4IDpjjkGmZA2wfSgbXZqddzzhctyNzk1o', '2017-05-04 09:29:04', '2017-05-04 10:16:56');
+INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `roles_id`) VALUES
+(1, 1, 'admin', 'admin@gmail.com', '$2y$10$oR5nyelEYWb/AU2LxPH9FOKqlX58CrIda9DoNRjpPdfh2yNRV1S6.', 'hVVP9M2BtNl75GZ5H5yBKp4G2qTpdFiz5c9SOquRGoSgSIRgRTkeKdUUnhPK', '2017-05-03 11:00:56', '2017-05-03 11:00:56', 0),
+(2, 3, 'nata', 'admin123@gmail.com', '$2y$10$6D/b8EjfjJ6wq8ad1/pNu.MyHfYvI9rGKOTPSxpQ9GBXVw7gQLpri', 'woSr3KHZwtJE6DvhFdOBndDjUMt4IDpjjkGmZA2wfSgbXZqddzzhctyNzk1o', '2017-05-04 09:29:04', '2017-05-04 10:16:56', 0);
 
 -- --------------------------------------------------------
 
@@ -583,19 +598,24 @@ INSERT INTO `users_logs` (`id`, `user_id`, `action`, `action_model`, `action_id`
 -- Индексы таблицы `addresses`
 --
 ALTER TABLE `addresses`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `addresses_city_id_foreign` (`city_id`);
 
 --
 -- Индексы таблицы `cities`
 --
 ALTER TABLE `cities`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cities_district_id_foreign` (`district_id`);
 
 --
 -- Индексы таблицы `clients`
 --
 ALTER TABLE `clients`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `clients_customer_id_foreign` (`customer_id`),
+  ADD KEY `clients_manager_id_foreign` (`manager_id`),
+  ADD KEY `clients_address_id_foreign` (`address_id`);
 
 --
 -- Индексы таблицы `customers`
@@ -607,7 +627,8 @@ ALTER TABLE `customers`
 -- Индексы таблицы `districts`
 --
 ALTER TABLE `districts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `districts_region_id_foreign` (`region_id`);
 
 --
 -- Индексы таблицы `job`
@@ -619,7 +640,8 @@ ALTER TABLE `job`
 -- Индексы таблицы `managers`
 --
 ALTER TABLE `managers`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `managers_user_id_foreign` (`user_id`);
 
 --
 -- Индексы таблицы `menus`
@@ -652,13 +674,18 @@ ALTER TABLE `migrations`
 -- Индексы таблицы `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_poland_id_foreign` (`poland_id`),
+  ADD KEY `orders_client_id_foreign` (`client_id`),
+  ADD KEY `orders_status_id_foreign` (`status_id`),
+  ADD KEY `orders_type_visa_id_foreign` (`type_visa_id`);
 
 --
 -- Индексы таблицы `partners`
 --
 ALTER TABLE `partners`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `partners_poland_id_foreign` (`poland_id`);
 
 --
 -- Индексы таблицы `password_resets`
@@ -670,7 +697,8 @@ ALTER TABLE `password_resets`
 -- Индексы таблицы `polands`
 --
 ALTER TABLE `polands`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `polands_user_id_foreign` (`user_id`);
 
 --
 -- Индексы таблицы `regions`
@@ -780,7 +808,7 @@ ALTER TABLE `meta`
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
@@ -846,11 +874,64 @@ ALTER TABLE `users_logs`
 --
 
 --
+-- Ограничения внешнего ключа таблицы `addresses`
+--
+ALTER TABLE `addresses`
+  ADD CONSTRAINT `addresses_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `cities`
+--
+ALTER TABLE `cities`
+  ADD CONSTRAINT `cities_district_id_foreign` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `clients`
+--
+ALTER TABLE `clients`
+  ADD CONSTRAINT `clients_address_id_foreign` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
+  ADD CONSTRAINT `clients_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
+  ADD CONSTRAINT `clients_manager_id_foreign` FOREIGN KEY (`manager_id`) REFERENCES `managers` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `districts`
+--
+ALTER TABLE `districts`
+  ADD CONSTRAINT `districts_region_id_foreign` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `managers`
+--
+ALTER TABLE `managers`
+  ADD CONSTRAINT `managers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
 -- Ограничения внешнего ключа таблицы `menu_role`
 --
 ALTER TABLE `menu_role`
   ADD CONSTRAINT `menu_role_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `menu_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_client_id_foreign` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`),
+  ADD CONSTRAINT `orders_poland_id_foreign` FOREIGN KEY (`poland_id`) REFERENCES `polands` (`id`),
+  ADD CONSTRAINT `orders_status_id_foreign` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`),
+  ADD CONSTRAINT `orders_type_visa_id_foreign` FOREIGN KEY (`type_visa_id`) REFERENCES `typeofvisas` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `partners`
+--
+ALTER TABLE `partners`
+  ADD CONSTRAINT `partners_poland_id_foreign` FOREIGN KEY (`poland_id`) REFERENCES `polands` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `polands`
+--
+ALTER TABLE `polands`
+  ADD CONSTRAINT `polands_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -7,7 +7,7 @@ use Laraveldaily\Quickadmin\Models\Menu;
 
 class Role extends Model
 {
-    protected $fillable = ['title'];
+    protected $fillable = ['name'];
 
     public $relation_ids = [];
 
@@ -27,6 +27,11 @@ class Role extends Model
         }
 
         return isset($this->relation_ids['menus'][$menu]);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 }
 

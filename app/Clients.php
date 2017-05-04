@@ -20,8 +20,9 @@ class Clients extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'clients';
-    
-    protected $fillable = ['name'];
+
+    protected $fillable = ['name', 'manager_id', 'customer_id', 'prepayment', 'payment', 'address_id',
+        'scan_passport_path', 'passport', 'data_of_birthday', 'phone', 'email'];
     
 
     public static function boot()
@@ -30,8 +31,24 @@ class Clients extends Model {
 
         Clients::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+    public function customer()
+    {
+        return $this->belongsTo(Customers::class);
+    }
+
+    public function order()
+    {
+        return $this->hasOne(Orders::class);
+    }
+
+    public function manager()
+    {
+        return $this->belongsTo(Managers::class);
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Addresses::class);
+    }
 }

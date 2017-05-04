@@ -20,7 +20,7 @@ class Regions extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'regions';
-    
+
     protected $fillable = ['name'];
     
 
@@ -30,8 +30,11 @@ class Regions extends Model {
 
         Regions::observe(new UserActionsObserver);
     }
-    
-    
+
+    public function districts()
+    {
+        return $this->hasMany(Districts::class);
+    }
     
     
 }

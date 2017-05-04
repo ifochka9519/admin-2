@@ -20,7 +20,7 @@ class Statuses extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'statuses';
-    
+
     protected $fillable = ['name'];
     
 
@@ -30,8 +30,11 @@ class Statuses extends Model {
 
         Statuses::observe(new UserActionsObserver);
     }
-    
-    
+
+    public function orders()
+    {
+        $this->hasMany(Orders::class);
+    }
     
     
 }

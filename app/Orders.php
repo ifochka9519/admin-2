@@ -20,8 +20,8 @@ class Orders extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'orders';
-    
-    protected $fillable = ['scan_order_path'];
+
+    protected $fillable = ['status_id','poland_id', 'client_id', 'type_visa_id', 'scan_order_path', 'prepayment', 'payment'];
     
 
     public static function boot()
@@ -30,7 +30,26 @@ class Orders extends Model {
 
         Orders::observe(new UserActionsObserver);
     }
-    
+
+    public function poland()
+    {
+        return $this->belongsTo(Polands::class);
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Clients::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Statuses::class);
+    }
+
+    public function typeOfVisa()
+    {
+        return $this->belongsTo(TypeOfVisas::class);
+    }
     
     
     

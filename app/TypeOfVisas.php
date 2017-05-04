@@ -20,7 +20,7 @@ class TypeOfVisas extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'typeofvisas';
-    
+
     protected $fillable = ['name'];
     
 
@@ -30,8 +30,11 @@ class TypeOfVisas extends Model {
 
         TypeOfVisas::observe(new UserActionsObserver);
     }
-    
-    
-    
+
+
+    public function orders()
+    {
+        return $this->hasMany(Orders::class);
+    }
     
 }

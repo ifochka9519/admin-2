@@ -20,8 +20,8 @@ class Addresses extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'addresses';
-    
-    protected $fillable = ['name'];
+
+    protected $fillable = ['address', 'city_id'];
     
 
     public static function boot()
@@ -30,8 +30,15 @@ class Addresses extends Model {
 
         Addresses::observe(new UserActionsObserver);
     }
-    
-    
-    
+
+    public function client()
+    {
+        return $this->belongsTo(Clients::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
     
 }

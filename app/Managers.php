@@ -20,8 +20,8 @@ class Managers extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'managers';
-    
-    protected $fillable = ['name'];
+
+    protected $fillable = ['name', 'user_id'];
     
 
     public static function boot()
@@ -30,8 +30,17 @@ class Managers extends Model {
 
         Managers::observe(new UserActionsObserver);
     }
-    
-    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function clients()
+    {
+        return $this->hasMany(Clients::class);
+    }
     
     
 }

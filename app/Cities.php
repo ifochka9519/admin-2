@@ -20,8 +20,8 @@ class Cities extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'cities';
-    
-    protected $fillable = ['name'];
+
+    protected $fillable = ['name', 'district_id'];
     
 
     public static function boot()
@@ -30,8 +30,16 @@ class Cities extends Model {
 
         Cities::observe(new UserActionsObserver);
     }
-    
-    
-    
+
+
+    public function district()
+    {
+        return $this->belongsTo(Districts::class);
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Addresses::class);
+    }
     
 }

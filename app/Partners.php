@@ -20,8 +20,7 @@ class Partners extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'partners';
-    
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'poland_id'];
     
 
     public static function boot()
@@ -30,8 +29,11 @@ class Partners extends Model {
 
         Partners::observe(new UserActionsObserver);
     }
-    
-    
-    
+
+
+    public function poland()
+    {
+        return $this->belongsTo(Polands::class);
+    }
     
 }

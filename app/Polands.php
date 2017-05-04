@@ -20,8 +20,8 @@ class Polands extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'polands';
-    
-    protected $fillable = ['name'];
+
+    protected $fillable = ['name', 'address', 'user_id'];
     
 
     public static function boot()
@@ -30,8 +30,20 @@ class Polands extends Model {
 
         Polands::observe(new UserActionsObserver);
     }
-    
-    
-    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Orders::class);
+    }
+
+    public function partners()
+    {
+        return $this->hasMany(Partners::class);
+    }
     
 }
