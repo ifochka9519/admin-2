@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Addresses;
+use App\Cities;
 use App\Customers;
+use App\Districts;
 use App\Http\Controllers\Controller;
+use App\Regions;
 use App\User;
 use Redirect;
 use Schema;
@@ -41,8 +45,13 @@ class ClientsController extends Controller {
         $customers = Customers::pluck('name', 'id');
 
         $managers = User::where('role_id', '3')->pluck('name', 'id');
+        $regions = Regions::pluck('name', 'id');
+        $districts = Districts::pluck('name', 'id');
+        $cities = Cities::pluck('name', 'id');
+        $addresses = Addresses::pluck('address', 'id');
 
-        return view('admin.clients.create')->with(['customers'=> $customers, 'managers'=>$managers]);
+
+        return view('admin.clients.create')->with(['customers'=> $customers, 'managers'=>$managers, 'regions'=>$regions, 'districts'=>$districts, 'cities'=>$cities, 'addresses'=>$addresses]);
 
 	}
 
@@ -54,7 +63,10 @@ class ClientsController extends Controller {
 	public function store(CreateClientsRequest $request)
 	{
 	    
-		Clients::create($request->all());
+		$client = Clients::create($request->all());
+
+		$user = User::find($request['user_id']);
+		$client->user($user);
 
 		return redirect()->route(config('quickadmin.route').'.clients.index');
 	}

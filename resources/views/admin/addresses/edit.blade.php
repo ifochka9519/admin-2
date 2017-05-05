@@ -19,9 +19,9 @@
 {!! Form::model($addresses, array('class' => 'form-horizontal', 'id' => 'form-with-validation', 'method' => 'PATCH', 'route' => array(config('quickadmin.route').'.addresses.update', $addresses->id))) !!}
 
 <div class="form-group">
-    {!! Form::label('name', 'Адрес', array('class'=>'col-sm-2 control-label')) !!}
+    {!! Form::label('address', 'Адрес', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::text('name', old('name',$addresses->name), array('class'=>'form-control')) !!}
+        {!! Form::text('address', old('address',$addresses->address), array('class'=>'form-control')) !!}
         
     </div>
 </div>

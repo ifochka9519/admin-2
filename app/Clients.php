@@ -21,7 +21,7 @@ class Clients extends Model {
 
     protected $table    = 'clients';
 
-    protected $fillable = ['name', 'manager_id', 'customer_id', 'prepayment', 'payment', 'address_id',
+    protected $fillable = ['name', 'user_id', 'customer_id', 'prepayment', 'payment', 'address_id',
         'scan_passport_path', 'passport', 'data_of_birthday', 'phone', 'email'];
     
 
@@ -42,9 +42,9 @@ class Clients extends Model {
         return $this->hasOne(Orders::class);
     }
 
-    public function manager()
+    public function user()
     {
-        return $this->belongsTo(Managers::class);
+        return $this->belongsTo(User::class);
     }
 
     public function addresses()

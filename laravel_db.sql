@@ -63,7 +63,7 @@ CREATE TABLE `clients` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `customer_id` int(10) UNSIGNED NOT NULL,
-  `manager_id` int(10) UNSIGNED NOT NULL,
+  --`manager_id` int(10) UNSIGNED NOT NULL,
   `address_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -614,7 +614,7 @@ ALTER TABLE `cities`
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`),
   ADD KEY `clients_customer_id_foreign` (`customer_id`),
-  ADD KEY `clients_manager_id_foreign` (`manager_id`),
+  --ADD KEY `clients_manager_id_foreign` (`manager_id`),
   ADD KEY `clients_address_id_foreign` (`address_id`);
 
 --
@@ -891,7 +891,7 @@ ALTER TABLE `cities`
 ALTER TABLE `clients`
   ADD CONSTRAINT `clients_address_id_foreign` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
   ADD CONSTRAINT `clients_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
-  ADD CONSTRAINT `clients_manager_id_foreign` FOREIGN KEY (`manager_id`) REFERENCES `managers` (`id`);
+  --ADD CONSTRAINT `clients_manager_id_foreign` FOREIGN KEY (`manager_id`) REFERENCES `managers` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `districts`

@@ -45,10 +45,7 @@ class CreateRelation extends Migration
             $table->integer('poland_id')->unsigned();
             $table->foreign('poland_id')->references('id')->on('polands');
         });
-        Schema::table('clients', function (Blueprint $table){
-            $table->integer('manager_id')->unsigned();
-            $table->foreign('manager_id')->references('id')->on('managers');
-        });
+
         Schema::table('clients', function (Blueprint $table){
             $table->integer('address_id')->unsigned();
             $table->foreign('address_id')->references('id')->on('addresses');

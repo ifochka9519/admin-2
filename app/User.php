@@ -52,13 +52,18 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsTo(Role::class);
     }
 
-    public function manager()
+    public function orders()
     {
-        return $this->hasOne(Managers::class);
+        return $this->hasMany(Orders::class);
     }
 
-    public function poland()
+    public function partners()
     {
-        return $this->hasOne(Polands::class);
+        return $this->hasMany(Partners::class);
+    }
+
+    public function clients()
+    {
+        return $this->hasMany(Clients::class);
     }
 }

@@ -91,9 +91,40 @@
 
 
 <div class="form-group">
-    {!! Form::label('manager_id', 'Менеджер', ['class'=>'col-sm-2 control-label']) !!}
+    {!! Form::label('user_id', 'Менеджер', ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::select('manager_id', $managers, old('manager_id'), ['class'=>'form-control']) !!}
+        {!! Form::select('user_id', $managers, old('user_id'), ['class'=>'form-control']) !!}
+    </div>
+</div>
+
+
+<div class="form-group">
+    {!! Form::label('region_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('region_id', $regions, old('region_id'), ['class'=>'form-control']) !!}
+    </div>
+</div>
+
+
+<div class="form-group">
+    {!! Form::label('district_id', 'Район', ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('district_id', $districts, old('district_id'), ['class'=>'form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('city_id', 'Город', ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('city_id', $cities, old('city_id'), ['class'=>'form-control']) !!}
+    </div>
+</div>
+
+
+<div class="form-group">
+    {!! Form::label('address_id', 'Адресс', ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('address_id', $addresses, old('address_id'), ['class'=>'form-control']) !!}
     </div>
 </div>
 

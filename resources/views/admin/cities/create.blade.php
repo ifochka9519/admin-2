@@ -26,6 +26,14 @@
     </div>
 </div>
 
+
+<div class="form-group">
+    {!! Form::label('district_id', 'Район', ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('district_id', $districts, old('district_id'), ['class'=>'form-control']) !!}
+    </div>
+</div>
+
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit( trans('quickadmin::templates.templates-view_create-create') , array('class' => 'btn btn-primary')) !!}

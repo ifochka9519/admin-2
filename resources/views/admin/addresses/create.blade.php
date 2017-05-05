@@ -19,10 +19,17 @@
 {!! Form::open(array('route' => config('quickadmin.route').'.addresses.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal')) !!}
 
 <div class="form-group">
-    {!! Form::label('name', 'Адрес', array('class'=>'col-sm-2 control-label')) !!}
+    {!! Form::label('address', 'Адрес', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::text('name', old('name'), array('class'=>'form-control')) !!}
+        {!! Form::text('address', old('address'), array('class'=>'form-control')) !!}
         
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('city_id', 'Город', ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('city_id', $cities, old('city_id'), ['class'=>'form-control']) !!}
     </div>
 </div>
 

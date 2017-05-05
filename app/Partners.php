@@ -20,7 +20,7 @@ class Partners extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'partners';
-    protected $fillable = ['name', 'poland_id'];
+    protected $fillable = ['name', 'user_id'];
     
 
     public static function boot()
@@ -31,9 +31,9 @@ class Partners extends Model {
     }
 
 
-    public function poland()
+    public function user()
     {
-        return $this->belongsTo(Polands::class);
+        return $this->belongsTo(User::class);
     }
     
 }

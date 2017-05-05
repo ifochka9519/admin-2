@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Cities;
 use App\Http\Controllers\Controller;
 use Redirect;
 use Schema;
@@ -35,9 +36,10 @@ class AddressesController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.addresses.create');
+
+        $cities = Cities::pluck('name', 'id');
+
+        return view('admin.addresses.create', compact('cities'));
 	}
 
 	/**

@@ -21,7 +21,7 @@ class Orders extends Model {
 
     protected $table    = 'orders';
 
-    protected $fillable = ['status_id','poland_id', 'client_id', 'type_visa_id', 'scan_order_path', 'prepayment', 'payment'];
+    protected $fillable = ['status_id','user_id', 'client_id', 'type_visa_id', 'scan_order_path', 'prepayment', 'payment'];
     
 
     public static function boot()
@@ -31,9 +31,9 @@ class Orders extends Model {
         Orders::observe(new UserActionsObserver);
     }
 
-    public function poland()
+    public function user()
     {
-        return $this->belongsTo(Polands::class);
+        return $this->belongsTo(User::class);
     }
 
     public function client()

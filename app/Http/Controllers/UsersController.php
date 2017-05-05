@@ -46,12 +46,6 @@ class UsersController extends Controller
         $user = User::create($input);
 
 
-        if($request['role_id'] == 3){
-            $manager = new Managers();
-            $manager->user_id = 3;
-            $user->manager($manager);
-            $manager->save();
-        }
 
         return redirect()->route('users.index')->withMessage(trans('quickadmin::admin.users-controller-successfully_created'));
     }
