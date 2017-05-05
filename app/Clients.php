@@ -49,6 +49,6 @@ class Clients extends Model {
 
     public function address()
     {
-        return $this->hasOne(Addresses::class);
+        return $this->belongsTo(Addresses::class);
     }
 }

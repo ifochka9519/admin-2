@@ -1,6 +1,8 @@
 @extends('admin.layouts.master')
 
 @section('content')
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
 
 <div class="row">
     <div class="col-sm-10 col-sm-offset-2">
@@ -101,7 +103,7 @@
 <div class="form-group">
     {!! Form::label('region_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::select('region_id', $regions, old('region_id'), ['class'=>'form-control']) !!}
+        {!! Form::select('region_id', $regions, old('region_id'), ['class'=>'regions']) !!}
     </div>
 </div>
 
@@ -109,7 +111,7 @@
 <div class="form-group">
     {!! Form::label('district_id', 'Район', ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::select('district_id', $districts, old('district_id'), ['class'=>'form-control']) !!}
+        {!! Form::select('district_id', $districts, old('district_id'), ['class'=>' form-control']) !!}
     </div>
 </div>
 
@@ -136,5 +138,10 @@
 </div>
 
 {!! Form::close() !!}
+
+<script>
+    var urlD = {{route('makeListDistricts')}};
+    var token = '{{Session::token()}}';
+</script>
 
 @endsection

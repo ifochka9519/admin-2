@@ -115,4 +115,10 @@ class DistrictsController extends Controller {
         return redirect()->route(config('quickadmin.route').'.districts.index');
     }
 
+    public function makeList(Request $request){
+    	$region = Regions::find($request['id']);
+    	$districts = $region->districts;
+
+    }
+
 }

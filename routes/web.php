@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/makeListDistricts', DistrictsController@makeList)->name('makeListDistricts');

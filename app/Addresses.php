@@ -33,7 +33,7 @@ class Addresses extends Model {
 
     public function client()
     {
-        return $this->belongsTo(Clients::class);
+        return $this->hasOne(Clients::class);
     }
 
     public function city()
