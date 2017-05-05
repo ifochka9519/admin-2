@@ -47,8 +47,8 @@ class Clients extends Model {
         return $this->belongsTo(User::class);
     }
 
-    public function addresses()
+    public function address()
     {
-        return $this->hasMany(Addresses::class);
+        return $this->hasOne(Addresses::class);
     }
 }

@@ -18,13 +18,13 @@
 
 {!! Form::model($clients, array('class' => 'form-horizontal', 'id' => 'form-with-validation', 'method' => 'PATCH', 'route' => array(config('quickadmin.route').'.clients.update', $clients->id))) !!}
 
-{{--<div class="form-group">
+<div class="form-group">
     {!! Form::label('name', 'Имя', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('name', old('name',$clients->name), array('class'=>'form-control')) !!}
         
     </div>
-</div>--}}
+</div>
 
 <div class="form-group">
     {!! Form::label('payment', 'Оплата', array('class'=>'col-sm-2 control-label')) !!}
@@ -50,13 +50,13 @@
     </div>
 </div>
 
-<div class="form-group">
+{{--<div class="form-group">
     {!! Form::label('scan_passport_path', 'Скан паспорта', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::file('scan_passport_path', old('scan_passport_path',$clients->scan_passport_path), array('class'=>'form-control')) !!}
 
     </div>
-</div>
+</div>--}}
 
 <div class="form-group">
     {!! Form::label('data_of_birthday', 'Дата рождения', array('class'=>'col-sm-2 control-label')) !!}
@@ -85,7 +85,7 @@
 <div class="form-group">
     {!! Form::label('address_id', 'Адрес', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::text('address_id', old('address_id',$clients->address_id), array('class'=>'form-control')) !!}
+        {!! Form::text('address_id', old('address_id',$clients->address->address), array('class'=>'form-control')) !!}
 
     </div>
 </div>
