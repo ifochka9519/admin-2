@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Customers;
 use App\Http\Controllers\Controller;
+use App\User;
 use Redirect;
 use Schema;
 use App\Clients;
@@ -35,9 +37,13 @@ class ClientsController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.clients.create');
+
+        $customers = Customers::pluck('name', 'id');
+
+        $managers = User::where('role_id', '3')->pluck('name', 'id');
+
+        return view('admin.clients.create')->with(['customers'=> $customers, 'managers'=>$managers]);
+
 	}
 
 	/**

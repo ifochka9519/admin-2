@@ -27,6 +27,63 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('payment', 'Оплата', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::text('payment', old('payment',$clients->payment), array('class'=>'form-control')) !!}
+
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('prepayment', 'Предоплата', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::text('prepayment', old('prepayment',$clients->prepayment), array('class'=>'form-control')) !!}
+
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('passport', 'Номер паспорта', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::text('passport', old('passport',$clients->passport), array('class'=>'form-control')) !!}
+
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('scan_passport_path', 'Скан паспорта', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::file('scan_passport_path', old('scan_passport_path',$clients->scan_passport_path), array('class'=>'form-control')) !!}
+
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('data_of_birthday', 'Дата рождения', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::date('data_of_birthday', old('data_of_birthday',$clients->data_of_birthday), array('class'=>'form-control')) !!}
+
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('phone', 'Номер', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::file('phone', old('phone',$clients->phone), array('class'=>'form-control')) !!}
+
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('email', 'E-mail', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::file('email', old('email',$clients->email), array('class'=>'form-control')) !!}
+
+    </div>
+</div>
+
+
+<div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'), array('class' => 'btn btn-primary')) !!}
       {!! link_to_route(config('quickadmin.route').'.clients.index', trans('quickadmin::templates.templates-view_edit-cancel'), null, array('class' => 'btn btn-default')) !!}

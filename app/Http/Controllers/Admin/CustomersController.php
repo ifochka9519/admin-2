@@ -35,8 +35,8 @@ class CustomersController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
+
+
 	    return view('admin.customers.create');
 	}
 
@@ -49,6 +49,8 @@ class CustomersController extends Controller {
 	{
 	    
 		Customers::create($request->all());
+
+
 
 		return redirect()->route(config('quickadmin.route').'.customers.index');
 	}

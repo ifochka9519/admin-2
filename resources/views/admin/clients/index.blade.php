@@ -17,6 +17,8 @@
                             {!! Form::checkbox('delete_all',1,false,['class' => 'mass']) !!}
                         </th>
                         <th>Имя</th>
+                        <th>Номер</th>
+                        <th>E-mail</th>
 
                         <th>&nbsp;</th>
                     </tr>
@@ -29,6 +31,8 @@
                                 {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
                             </td>
                             <td>{{ $row->name }}</td>
+                            <td>{{ $row->phone }}</td>
+                            <td>{{ $row->email }}</td>
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.clients.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}

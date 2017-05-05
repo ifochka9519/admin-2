@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Managers;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -43,6 +44,14 @@ class UsersController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
+
+
+        if($request['role_id'] == 3){
+            $manager = new Managers();
+            $manager->user_id = 3;
+            $user->manager($manager);
+            $manager->save();
+        }
 
         return redirect()->route('users.index')->withMessage(trans('quickadmin::admin.users-controller-successfully_created'));
     }
