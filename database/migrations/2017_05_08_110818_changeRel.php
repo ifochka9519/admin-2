@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Updaterelations extends Migration
+class ChangeRel extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class Updaterelations extends Migration
      */
     public function up()
     {
-        /*Schema::table('clients', function (Blueprint $table){
-            $table->dropForeign('clients_manager_id_foreign');
-        });*/
+        Schema::table('districts', function (Blueprint $table){
 
+            $table->foreign('regions_id')->references('id')->on('regions');
+        });
     }
 
     /**

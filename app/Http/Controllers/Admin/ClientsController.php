@@ -45,7 +45,7 @@ class ClientsController extends Controller {
         $customers = Customers::pluck('name', 'id');
 
         $managers = User::where('role_id', '3')->pluck('name', 'id');
-        $regions = Regions::pluck('name', 'id');
+        $regions =  Regions::pluck('name', 'id');
         $districts = Districts::pluck('name', 'id');
         $cities = Cities::pluck('name', 'id');
         $addresses = Addresses::pluck('address', 'id');
@@ -62,8 +62,34 @@ class ClientsController extends Controller {
 	 */
 	public function store(CreateClientsRequest $request)
 	{
-	    
-		$client = Clients::create($request->all());
+
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'payment' => 'integer',
+            'prepayment' => 'integer',
+            'phone' => 'numeric',
+            'passport' => 'required|min:4|max:12|regex:/[A-Z0-9]/',
+            'email' => 'required|email|max:255|unique:clients',
+        ]);
+        $client = Clients::create($request->all());
+
+
+
+        $imageName = $client->id . '.' .
+            $request->file('scan_passport_path')->getClientOriginalExtension();
+
+        $request->file('scan_passport_path')->move(
+            base_path() . '/public/images/users/', $imageName
+        );
+        $client->scan_passport_path = '/images/users/'.$imageName;
+        $client->save();
+
+        /*$file = $request->file('scan_passport_path');
+        $file_name = str_random(30) . '.jpg';
+        $file->move(base_path() . '/assets/files/');
+        $client->scan_passport_path = '/images/users/' . $file_name;
+	    */
+
 
 		$user = User::find($request['user_id']);
 		$client->user($user);

@@ -21,7 +21,7 @@ class Districts extends Model {
 
     protected $table    = 'districts';
 
-    protected $fillable = ['name', 'region_id'];
+    protected $fillable = ['name', 'regions_id'];
     
 
     public static function boot()

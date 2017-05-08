@@ -50,13 +50,14 @@
     </div>
 </div>
 
-{{--<div class="form-group">
+<div class="form-group">
     {!! Form::label('scan_passport_path', 'Скан паспорта', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
+        <img src="{{$clients->scan_passport_path}}" alt="">
         {!! Form::file('scan_passport_path', old('scan_passport_path',$clients->scan_passport_path), array('class'=>'form-control')) !!}
 
     </div>
-</div>--}}
+</div>
 
 <div class="form-group">
     {!! Form::label('data_of_birthday', 'Дата рождения', array('class'=>'col-sm-2 control-label')) !!}

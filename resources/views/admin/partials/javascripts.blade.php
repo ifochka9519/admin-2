@@ -7,6 +7,8 @@
 <script src="{{ url('quickadmin/js') }}/bootstrap.min.js"></script>
 <script src="{{ url('quickadmin/js') }}/main.js"></script>
 
+
+<script type="text/javascript" src="/js/script.js"></script>
 <script>
 
     $('.datepicker').datepicker({

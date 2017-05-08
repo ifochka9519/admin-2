@@ -11,8 +11,11 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/makeListDistricts', DistrictsController@makeList)->name('makeListDistricts');
+
+Route::post('/admin/makeListDistricts', 'Admin\DistrictsController@makeList')->name('makeListDistricts');
+Route::post('/admin/makeListCities', 'Admin\CitiesController@makeList')->name('makeListCities');

@@ -114,4 +114,12 @@ class CitiesController extends Controller {
         return redirect()->route(config('quickadmin.route').'.cities.index');
     }
 
+
+    public function makeList(Request $request){
+        $district = Districts::find($request['district']);
+        $cities = $district->cities;
+        return response(json_encode($cities));
+
+    }
+
 }

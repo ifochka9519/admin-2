@@ -21,7 +21,7 @@ class Cities extends Model {
 
     protected $table    = 'cities';
 
-    protected $fillable = ['name', 'district_id'];
+    protected $fillable = ['name', 'districts_id'];
     
 
     public static function boot()

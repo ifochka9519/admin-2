@@ -51,12 +51,12 @@ class CreateRelation extends Migration
             $table->foreign('address_id')->references('id')->on('addresses');
         });
         Schema::table('districts', function (Blueprint $table){
-            $table->integer('region_id')->unsigned();
-            $table->foreign('region_id')->references('id')->on('regions');
+            $table->integer('regions_id')->unsigned();
+            $table->foreign('regions_id')->references('id')->on('regions');
         });
         Schema::table('cities', function (Blueprint $table){
-            $table->integer('district_id')->unsigned();
-            $table->foreign('district_id')->references('id')->on('districts');
+            $table->integer('districtsid')->unsigned();
+            $table->foreign('districts_id')->references('id')->on('districts');
         });
         Schema::table('addresses', function (Blueprint $table){
             $table->integer('city_id')->unsigned();

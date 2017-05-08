@@ -28,9 +28,9 @@
 
 
 <div class="form-group">
-    {!! Form::label('region_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}
+    {!! Form::label('regions_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::select('region_id', $regions, old('region_id'), ['class'=>'form-control']) !!}
+        {!! Form::select('regions_id', $regions, old('regions_id'), ['class'=>'form-control']) !!}
     </div>
 </div>
 

@@ -47,7 +47,7 @@ CREATE TABLE `cities` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `district_id` int(10) UNSIGNED NOT NULL
+  `districts_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -93,7 +93,7 @@ CREATE TABLE `districts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `region_id` int(10) UNSIGNED NOT NULL
+  `regions_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -606,7 +606,7 @@ ALTER TABLE `addresses`
 --
 ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `cities_district_id_foreign` (`district_id`);
+  ADD KEY `cities_districts_id_foreign` (`districts_id`);
 
 --
 -- Индексы таблицы `clients`
@@ -628,7 +628,7 @@ ALTER TABLE `customers`
 --
 ALTER TABLE `districts`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `districts_region_id_foreign` (`region_id`);
+  ADD KEY `districts_regions_id_foreign` (`regions_id`);
 
 --
 -- Индексы таблицы `job`
@@ -883,7 +883,7 @@ ALTER TABLE `addresses`
 -- Ограничения внешнего ключа таблицы `cities`
 --
 ALTER TABLE `cities`
-  ADD CONSTRAINT `cities_district_id_foreign` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`);
+  ADD CONSTRAINT `cities_districts_id_foreign` FOREIGN KEY (`districts_id`) REFERENCES `districts` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `clients`
@@ -897,7 +897,7 @@ ALTER TABLE `clients`
 -- Ограничения внешнего ключа таблицы `districts`
 --
 ALTER TABLE `districts`
-  ADD CONSTRAINT `districts_region_id_foreign` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`);
+  ADD CONSTRAINT `districts_regions_id_foreign` FOREIGN KEY (`regions_id`) REFERENCES `regions` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `managers`
