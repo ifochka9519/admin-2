@@ -4,8 +4,8 @@ $(function () {
 		source: availableTags,
         select: function(event, ui) {
 			console.log(ui.item.value);
-            $('.regions').on('click', function(){
-                var id = $(this).val();
+         //   $('.regions').on('click', function(){
+              //  var id = $(this).val();
                 $.ajax({
                     method: 'POST',
                     url: urlD,
@@ -27,7 +27,7 @@ $(function () {
                         //console.log('hi');
                     })
 
-            })
+           // })
 		}
     });
 });

@@ -99,16 +99,13 @@
     </div>
 </div>
 
-<input id="tags" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
 
-{{--<div class="form-group">
+
+<div class="form-group">
 {!! Form::label('regions_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}
-<div style="position: relative; height: 80px;">
-    <input type="text" name="country" id="autocomplete-ajax" style="position: absolute; z-index: 2; background: transparent;"/>
-    <input type="text" name="country" id="autocomplete-ajax-x" disabled="disabled" style="color: #CCC; position: absolute; background: transparent; z-index: 1;"/>
+    <input id="tags" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+
 </div>
-<div id="selction-ajax"></div>
-</div>--}}
 
 {{--<div class="form-group">
     {!! Form::label('regions_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}

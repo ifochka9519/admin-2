@@ -117,6 +117,7 @@ class DistrictsController extends Controller {
 
     public function makeList(Request $request){
     	$region = Regions::where('name',$request['region'])->get();
+    	//dump($region); exit();
     	//find($request['region']);
     	$districts = $region[0]->districts;
     	return response(json_encode($districts));
