@@ -48,8 +48,13 @@ class DistrictsController extends Controller
      */
     public function store(CreateDistrictsRequest $request)
     {
+        $district =new Districts();
+        $district->name = $request['name'];
+        $region = $request['region_id'];
+        $district->region_id = $region->id;
+        $district->save();
 
-        Districts::create($request->all());
+
 
         return redirect()->route(config('quickadmin.route') . '.districts.index');
     }
@@ -77,9 +82,11 @@ class DistrictsController extends Controller
     public function update($id, UpdateDistrictsRequest $request)
     {
         $districts = Districts::findOrFail($id);
+        $districts->name = $request['name'];
+        $region = $request['region_id'];
+        $districts->region_id = $region->id;
 
-
-        $districts->update($request->all());
+        $districts->update();
 
         return redirect()->route(config('quickadmin.route') . '.districts.index');
     }
@@ -127,8 +134,7 @@ class DistrictsController extends Controller
         $district = new Districts();
         $district->name = $request['district'];
 
-        $region = Regions::find($request['region']);
-
+        $region = $request['region'];
 
         $district->regions_id = $region;
 

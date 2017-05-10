@@ -68,14 +68,14 @@ class ClientsController extends Controller {
             'payment' => 'integer',
             'prepayment' => 'integer',
             'phone' => 'numeric',
-            'passport' => 'required|min:4|max:12|regex:/[A-Z0-9]/',
+            'passport' => 'required|min:4|max:12|regex:/[A-Z0-9]/|unique:clients',
             'email' => 'required|email|max:255|unique:clients',
         ]);
         $client = Clients::create($request->all());
 
 
 
-        $imageName = $client->id . '.' .
+        $imageName = str_random(30) . '.' .
             $request->file('scan_passport_path')->getClientOriginalExtension();
 
         $request->file('scan_passport_path')->move(
@@ -106,9 +106,10 @@ class ClientsController extends Controller {
 	public function edit($id)
 	{
 		$clients = Clients::find($id);
+        $regions =  Regions::pluck('name', 'id');
 	    
 	    
-		return view('admin.clients.edit', compact('clients'));
+		return view('admin.clients.edit', compact('clients'))->with(['regions'=>$regions]);
 	}
 
 	/**

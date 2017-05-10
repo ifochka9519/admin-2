@@ -99,6 +99,8 @@ $(function () {
         source: [],
         change: function () {
             var vall = $('#tagsA').val();
+            console.log(vall);
+
             $.ajax({
                 method: 'POST',
                 url: urlNA,
@@ -109,9 +111,16 @@ $(function () {
                 }
             })
                 .done(function (data) {
+                    console.log(data);
                     $('#address_id').val(data);
                 })
         }
+    })
+    
+    $('.edit-icon').on('click',function () {
+        //var address = '';
+        $('.address-area').show();
+        $('#old-address').remove();
     })
 })
 

@@ -56,8 +56,33 @@ class OrdersController extends Controller {
 	 */
 	public function store(CreateOrdersRequest $request)
 	{
-	    
-		Orders::create($request->all());
+	    $order = new Orders();
+        $status = Statuses::find($request['status_id']);
+        $typeofvisas = TypeOfVisas::find($request['type_visa_id']);
+        $user = User::find($request['user_id']);
+        $client = Clients::find($request['client_id']);
+        $order->client_id = $request['client_id'];
+        $order->user_id = $request['user_id'];
+        $order->status_id = $request['status_id'];
+        $order->type_visa_id = $request['type_visa_id'];
+        $order->status($status);
+        $order->typeOfVisa($typeofvisas);
+        $order->user($user);
+        $order->client($client);
+
+
+        $imageName = str_random(30) . '.' .
+            $request->file('scan_order_path')->getClientOriginalExtension();
+
+        $request->file('scan_order_path')->move(
+            base_path() . '/public/images/orders/', $imageName
+        );
+
+        $order->scan_order_path = '/images/orders/'.$imageName;
+
+        $order->payment = $request['payment'];
+        $order->prepayment = $request['prepayment'];
+        $order->save();
 
 		return redirect()->route(config('quickadmin.route').'.orders.index');
 	}
@@ -71,9 +96,12 @@ class OrdersController extends Controller {
 	public function edit($id)
 	{
 		$orders = Orders::find($id);
-	    
-	    
-		return view('admin.orders.edit', compact('orders'));
+        $statuses = Statuses::pluck('name', 'id');
+        $typeofvisas = TypeOfVisas::pluck('name', 'id');
+        $clients = Clients::pluck('name', 'id');
+        $users = User::where('role_id', 4)->pluck('name', 'id');
+
+        return view('admin.orders.edit')->with(['orders'=>$orders,'clients'=>$clients, 'users'=>$users, 'typeofvisas'=>$typeofvisas,'statuses'=>$statuses]);
 	}
 
 	/**
@@ -83,12 +111,26 @@ class OrdersController extends Controller {
 	 * @param  int  $id
 	 */
 	public function update($id, UpdateOrdersRequest $request)
-	{
-		$orders = Orders::findOrFail($id);
+    {
+        $orders = Orders::findOrFail($id);
 
-        
 
-		$orders->update($request->all());
+        $orders->update($request->all());
+        if ($request->file('scan_order_path') != null) {
+
+
+        $imageName = str_random(30) . '.' .
+            $request->file('scan_order_path')->getClientOriginalExtension();
+
+        $request->file('scan_order_path')->move(
+            base_path() . '/public/images/orders/', $imageName
+        );
+
+        $orders->scan_order_path = '/images/orders/' . $imageName;
+
+    }
+        $orders->save();
+
 
 		return redirect()->route(config('quickadmin.route').'.orders.index');
 	}

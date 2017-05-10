@@ -16,7 +16,7 @@
     </div>
 </div>
 
-{!! Form::open(array('route' => config('quickadmin.route').'.orders.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal')) !!}
+{!! Form::open(array('route' => config('quickadmin.route').'.orders.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal', 'enctype' => "multipart/form-data")) !!}
 
 <div class="form-group">
     {!! Form::label('type_visa_id', 'Тип визы', array('class'=>'col-sm-2 control-label')) !!}
@@ -70,7 +70,7 @@
 <div class="form-group">
     {!! Form::label('scan_order_path', 'Скан заявки', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::file('scan_order_path', old('scan_order_path'), array('class'=>'form-control')) !!}
+        {!! Form::file('scan_order_path') !!}
 
     </div>
 </div>

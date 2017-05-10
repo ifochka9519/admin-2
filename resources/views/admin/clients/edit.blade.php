@@ -83,15 +83,46 @@
     </div>
 </div>
 
+<div class="address-area" style="display: none;">
 <div class="form-group">
-    {!! Form::label('address_id', 'Адрес', array('class'=>'col-sm-2 control-label')) !!}
+    {!! Form::label('regions_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::text('address_id', old('address_id',$clients->address->address), array('class'=>'form-control')) !!}
-
+        {!! Form::select('regions_id', $regions, old('regions_id'), ['class'=>'regions form-control']) !!}
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('districts_id', 'Район', ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10" >
+        <input id="tagsD" class="ui-autocomplete-input form-control" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
     </div>
 </div>
 
 
+<div class="form-group">
+    {!! Form::label('city_id', 'Город', ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10" >
+        <input id="tagsC" class="ui-autocomplete-input form-control" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+    </div>
+</div>
+
+    <div class="form-group">
+        {!! Form::label('address_id', 'Адресс', ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10" >
+            <input id="tagsA" class="ui-autocomplete-input form-control" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+            <input type="hidden" name="address_id" id="address_id">
+        </div>
+
+    </div>
+
+</div>
+<div class="form-group" id="old-address">
+    {!! Form::label('address_id', 'Адрес', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::text('address_id', old('address_id',$clients->address->address), array('class'=>'form-control','id'=>'address_id', 'readonly')) !!}
+
+        <i class="edit-icon fa fa-pencil fa-3x" aria-hidden="true"></i>
+    </div>
+</div>
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'), array('class' => 'btn btn-primary')) !!}
@@ -100,5 +131,16 @@
 </div>
 
 {!! Form::close() !!}
+<script>
+    var urlD = '{{route('makeListDistricts')}}';
+    var urlDN = '{{route('addNewDistrict')}}';
+    var urlC = '{{route('makeListCities')}}';
+    var urlCN = '{{route('addNewCity')}}';
+    var urlNA = '{{route('addNewAddress')}}';
+    var token = '{{Session::token()}}';
+    var availableTags = [];
+
+
+</script>
 
 @endsection
