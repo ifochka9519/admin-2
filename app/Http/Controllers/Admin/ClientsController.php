@@ -107,9 +107,12 @@ class ClientsController extends Controller {
 	{
 		$clients = Clients::find($id);
         $regions =  Regions::pluck('name', 'id');
-	    
-	    
-		return view('admin.clients.edit', compact('clients'))->with(['regions'=>$regions]);
+        $city = $clients->address->city;
+        $district = Districts::where('id', $city->districts_id)->first();
+	    $region = Regions::where('id', $district->regions_id)->first();
+
+
+		return view('admin.clients.edit', compact('clients'))->with(['regions'=>$regions, 'city'=>$city, 'district'=>$district, 'region'=>$region]);
 	}
 
 	/**
@@ -122,9 +125,18 @@ class ClientsController extends Controller {
 	{
 		$clients = Clients::findOrFail($id);
 
-        
+        if(is_integer($request['address_id'])){
+            $clients->address_id = $request['address_id'];
+        }
 
-		$clients->update($request->all());
+        $clients->payment = $request['payment'];
+        $clients->prepayment = $request['prepayment'];
+        $clients->passport = $request['passport'];
+        $clients->data_of_birthday= $request['data_of_birthday'];
+        $clients->phone= $request['phone'];
+        $clients->email= $request['email'];
+
+		$clients->update();
 
 		return redirect()->route(config('quickadmin.route').'.clients.index');
 	}

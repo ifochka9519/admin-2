@@ -47,8 +47,15 @@ class CitiesController extends Controller
      */
     public function store(CreateCitiesRequest $request)
     {
+        $city = new Cities();
+        $city->name = $request['name'];
+        $city->districts_id = $request['districts_id'];
 
-        Cities::create($request->all());
+        $district = Districts::find($request['districts_id']);
+
+        $city->district($district);
+        $city->save();
+
 
         return redirect()->route(config('quickadmin.route') . '.cities.index');
     }

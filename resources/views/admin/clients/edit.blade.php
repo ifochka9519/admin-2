@@ -118,7 +118,15 @@
 <div class="form-group" id="old-address">
     {!! Form::label('address_id', 'Адрес', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::text('address_id', old('address_id',$clients->address->address), array('class'=>'form-control','id'=>'address_id', 'readonly')) !!}
+{{--
+      //  {{dump($clients->address->cities->district)}}\App\Districts::where('id',$clients->address->city->districts_id)->first()->name
+--}}
+        {{--{{
+
+      // dump(\App\Regions::where('id', \App\Districts::where('id',$clients->address->city->districts_id)->first()->regions_id))
+      //dump(\App\Districts::where('id',$clients->address->city->districts_id)->first()->regions_id)
+        }}--}}
+        {!! Form::text('address_id', old('address_id',$region->name .','.$district->name .','.$city->name.','.$clients->address->address), array('class'=>'form-control','id'=>'address_id', 'readonly')) !!}
 
         <i class="edit-icon fa fa-pencil fa-3x" aria-hidden="true"></i>
     </div>
