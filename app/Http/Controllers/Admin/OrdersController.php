@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Clients;
 use App\Http\Controllers\Controller;
+use App\Statuses;
+use App\TypeOfVisas;
+use App\User;
 use Redirect;
 use Schema;
 use App\Orders;
@@ -25,6 +29,7 @@ class OrdersController extends Controller {
     {
         $orders = Orders::all();
 
+
 		return view('admin.orders.index', compact('orders'));
 	}
 
@@ -35,9 +40,13 @@ class OrdersController extends Controller {
 	 */
 	public function create()
 	{
+
 	    
-	    
-	    return view('admin.orders.create');
+	    $clients = Clients::pluck('name', 'id');
+	    $users = User::where('role_id', 4)->pluck('name', 'id');
+	    $typeofvisas = TypeOfVisas::pluck('name', 'id');
+	    $statuses = Statuses::pluck('name', 'id');
+	    return view('admin.orders.create')->with(['clients'=>$clients, 'users'=>$users, 'typeofvisas'=>$typeofvisas,'statuses'=>$statuses]);
 	}
 
 	/**

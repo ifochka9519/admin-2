@@ -66,7 +66,9 @@
         {!! Form::date('data_of_birthday', old('data_of_birthday'), array('class'=>'form-control')) !!}
 
     </div>
+
 </div>
+
 
 <div class="form-group">
     {!! Form::label('phone', 'Номер', array('class'=>'col-sm-2 control-label')) !!}
@@ -101,23 +103,23 @@
 
 
 
-<div class="form-group">
+{{--<div class="form-group">
 {!! Form::label('regions_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}
     <input id="tags" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
 
-</div>
+</div>--}}
 
-{{--<div class="form-group">
+<div class="form-group">
     {!! Form::label('regions_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-
-        {!! Form::select('regions_id', $regions, old('regions_id'), ['class'=>'regions']) !!}
+        {!! Form::select('regions_id', $regions, old('regions_id'), ['class'=>'regions form-control']) !!}
     </div>
-</div>--}}
+</div>
 <div class="form-group">
     {!! Form::label('districts_id', 'Район', ['class'=>'col-sm-2 control-label']) !!}
-    <input id="tagsD" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
-
+    <div class="col-sm-10" >
+        <input id="tagsD" class="ui-autocomplete-input form-control" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+    </div>
 </div>
 
 {{--<div class="form-group" style="display: none;">
@@ -127,8 +129,9 @@
 </div>--}}
 <div class="form-group">
     {!! Form::label('city_id', 'Город', ['class'=>'col-sm-2 control-label']) !!}
-    <input id="tagsC" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
-
+    <div class="col-sm-10" >
+        <input id="tagsC" class="ui-autocomplete-input form-control" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+    </div>
 </div>
 {{--
 <div class="form-group" style="display: none;">
@@ -139,8 +142,10 @@
 --}}
 <div class="form-group">
     {!! Form::label('address_id', 'Адресс', ['class'=>'col-sm-2 control-label']) !!}
-    <input id="tagsA" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
-    <input type="hidden" name="address_id" id="address_id">
+    <div class="col-sm-10" >
+        <input id="tagsA" class="ui-autocomplete-input form-control" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+        <input type="hidden" name="address_id" id="address_id">
+    </div>
 
 </div>
 

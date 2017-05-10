@@ -12,89 +12,88 @@ use App\Http\Requests\UpdateCitiesRequest;
 use Illuminate\Http\Request;
 
 
+class CitiesController extends Controller
+{
 
-class CitiesController extends Controller {
-
-	/**
-	 * Display a listing of cities
-	 *
+    /**
+     * Display a listing of cities
+     *
      * @param Request $request
      *
      * @return \Illuminate\View\View
-	 */
-	public function index(Request $request)
+     */
+    public function index(Request $request)
     {
         $cities = Cities::all();
 
-		return view('admin.cities.index', compact('cities'));
-	}
+        return view('admin.cities.index', compact('cities'));
+    }
 
-	/**
-	 * Show the form for creating a new cities
-	 *
+    /**
+     * Show the form for creating a new cities
+     *
      * @return \Illuminate\View\View
-	 */
-	public function create()
-	{
-	  $districts = Districts::pluck('name', 'id');
-	    return view('admin.cities.create', compact('districts'));
-	}
+     */
+    public function create()
+    {
+        $districts = Districts::pluck('name', 'id');
+        return view('admin.cities.create', compact('districts'));
+    }
 
-	/**
-	 * Store a newly created cities in storage.
-	 *
+    /**
+     * Store a newly created cities in storage.
+     *
      * @param CreateCitiesRequest|Request $request
-	 */
-	public function store(CreateCitiesRequest $request)
-	{
-	    
-		Cities::create($request->all());
+     */
+    public function store(CreateCitiesRequest $request)
+    {
 
-		return redirect()->route(config('quickadmin.route').'.cities.index');
-	}
+        Cities::create($request->all());
 
-	/**
-	 * Show the form for editing the specified cities.
-	 *
-	 * @param  int  $id
+        return redirect()->route(config('quickadmin.route') . '.cities.index');
+    }
+
+    /**
+     * Show the form for editing the specified cities.
+     *
+     * @param  int $id
      * @return \Illuminate\View\View
-	 */
-	public function edit($id)
-	{
-		$cities = Cities::find($id);
-	    
-	    
-		return view('admin.cities.edit', compact('cities'));
-	}
+     */
+    public function edit($id)
+    {
+        $cities = Cities::find($id);
 
-	/**
-	 * Update the specified cities in storage.
+
+        return view('admin.cities.edit', compact('cities'));
+    }
+
+    /**
+     * Update the specified cities in storage.
      * @param UpdateCitiesRequest|Request $request
      *
-	 * @param  int  $id
-	 */
-	public function update($id, UpdateCitiesRequest $request)
-	{
-		$cities = Cities::findOrFail($id);
+     * @param  int $id
+     */
+    public function update($id, UpdateCitiesRequest $request)
+    {
+        $cities = Cities::findOrFail($id);
 
-        
 
-		$cities->update($request->all());
+        $cities->update($request->all());
 
-		return redirect()->route(config('quickadmin.route').'.cities.index');
-	}
+        return redirect()->route(config('quickadmin.route') . '.cities.index');
+    }
 
-	/**
-	 * Remove the specified cities from storage.
-	 *
-	 * @param  int  $id
-	 */
-	public function destroy($id)
-	{
-		Cities::destroy($id);
+    /**
+     * Remove the specified cities from storage.
+     *
+     * @param  int $id
+     */
+    public function destroy($id)
+    {
+        Cities::destroy($id);
 
-		return redirect()->route(config('quickadmin.route').'.cities.index');
-	}
+        return redirect()->route(config('quickadmin.route') . '.cities.index');
+    }
 
     /**
      * Mass delete function from index page
@@ -111,12 +110,13 @@ class CitiesController extends Controller {
             Cities::whereNotNull('id')->delete();
         }
 
-        return redirect()->route(config('quickadmin.route').'.cities.index');
+        return redirect()->route(config('quickadmin.route') . '.cities.index');
     }
 
 
-    public function makeList(Request $request){
-        $district = Districts::where('name',$request['district'])->get();
+    public function makeList(Request $request)
+    {
+        $district = Districts::where('name', $request['district'])->get();
         $cities = $district[0]->cities;
         return response(json_encode($cities));
 
@@ -128,7 +128,7 @@ class CitiesController extends Controller {
         $city = new Cities();
         $city->name = $request['city'];
 
-        $district = Districts::where('name',$request['district'])->get();
+        $district = Districts::where('name', $request['district'])->get();
         $district_id = $district[0]->id;
 
         $city->districts_id = $district_id;
