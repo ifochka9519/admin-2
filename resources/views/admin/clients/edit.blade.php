@@ -16,7 +16,7 @@
     </div>
 </div>
 
-{!! Form::model($clients, array('class' => 'form-horizontal', 'id' => 'form-with-validation', 'method' => 'PATCH', 'route' => array(config('quickadmin.route').'.clients.update', $clients->id))) !!}
+{!! Form::model($clients, array('class' => 'form-horizontal', 'id' => 'form-with-validation', 'method' => 'PATCH', 'route' => array(config('quickadmin.route').'.clients.update', $clients->id), ' enctype'=>"multipart/form-data")) !!}
 
 <div class="form-group">
     {!! Form::label('name', 'Имя', array('class'=>'col-sm-2 control-label')) !!}

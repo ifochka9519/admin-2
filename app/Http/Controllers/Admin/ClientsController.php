@@ -64,7 +64,7 @@ class ClientsController extends Controller {
 	{
 
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|regex:/^[A-Z]$/',
             'payment' => 'integer',
             'prepayment' => 'integer',
             'phone' => 'numeric',
@@ -83,13 +83,6 @@ class ClientsController extends Controller {
         );
         $client->scan_passport_path = '/images/users/'.$imageName;
         $client->save();
-
-        /*$file = $request->file('scan_passport_path');
-        $file_name = str_random(30) . '.jpg';
-        $file->move(base_path() . '/assets/files/');
-        $client->scan_passport_path = '/images/users/' . $file_name;
-	    */
-
 
 		$user = User::find($request['user_id']);
 		$client->user($user);
@@ -124,6 +117,16 @@ class ClientsController extends Controller {
 	public function update($id, UpdateClientsRequest $request)
 	{
 		$clients = Clients::findOrFail($id);
+        $this->validate($request, [
+            'name' => 'required|max:255|regex:/^[A-Z]$/',
+            'payment' => 'integer',
+            'prepayment' => 'integer',
+            'phone' => 'numeric',
+            'passport' => 'required|min:4|max:12|regex:/^[A-Z0-9]$/|unique:clients',
+            'email' => 'required|email|max:255|unique:clients',
+        ]);
+
+
 
         if(is_integer($request['address_id'])){
             $clients->address_id = $request['address_id'];
@@ -136,7 +139,22 @@ class ClientsController extends Controller {
         $clients->phone= $request['phone'];
         $clients->email= $request['email'];
 
-		$clients->update();
+        if ($request->file('scan_passport_path') != null) {
+
+
+            $imageName = str_random(30) . '.' .
+                $request->file('scan_passport_path')->getClientOriginalExtension();
+
+            $request->file('scan_passport_path')->move(
+                base_path() . '/public/images/users/', $imageName
+            );
+
+            $clients->scan_passport_path = '/images/users/' . $imageName;
+
+        }
+
+
+		$clients->save();
 
 		return redirect()->route(config('quickadmin.route').'.clients.index');
 	}

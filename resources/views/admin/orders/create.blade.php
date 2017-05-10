@@ -53,7 +53,7 @@
 <div class="form-group">
     {!! Form::label('payment', 'Оплата', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10 {{ $errors->has('payment') ? ' has-error' : '' }}">
-        {!! Form::text('payment', old('payment'), array('class'=>'form-control')) !!}
+        {!! Form::text('payment', '0', array('class'=>'form-control')) !!}
 
     </div>
 </div>
@@ -61,7 +61,7 @@
 <div class="form-group">
     {!! Form::label('prepayment', 'Предоплата', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10 {{ $errors->has('prepayment') ? ' has-error' : '' }}">
-        {!! Form::text('prepayment', old('prepayment'), array('class'=>'form-control')) !!}
+        {!! Form::text('prepayment', '0', array('class'=>'form-control')) !!}
 
     </div>
 </div>
