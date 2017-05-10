@@ -117,11 +117,24 @@ class DistrictsController extends Controller {
 
     public function makeList(Request $request){
     	$region = Regions::where('name',$request['region'])->get();
-    	//dump($region); exit();
-    	//find($request['region']);
     	$districts = $region[0]->districts;
     	return response(json_encode($districts));
 
+    }
+
+    public function addNewDistrict(Request $request)
+    {
+        $district = new Districts();
+        $district->name = $request['district'];
+
+        $region = Regions::where('name',$request['region'])->get();
+        $region_id = $region[0]->id;
+
+        $district->regions_id = $region_id;
+
+        $district->region($region_id);
+
+        $district->save();
     }
 
 }

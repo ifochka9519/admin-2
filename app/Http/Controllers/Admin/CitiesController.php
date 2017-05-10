@@ -116,10 +116,25 @@ class CitiesController extends Controller {
 
 
     public function makeList(Request $request){
-        $district = Districts::find($request['district']);
-        $cities = $district->cities;
+        $district = Districts::where('name',$request['district'])->get();
+        $cities = $district[0]->cities;
         return response(json_encode($cities));
 
     }
 
+
+    public function addNewCity(Request $request)
+    {
+        $city = new Cities();
+        $city->name = $request['city'];
+
+        $district = Districts::where('name',$request['district'])->get();
+        $district_id = $district[0]->id;
+
+        $city->districts_id = $district_id;
+
+        $city->district($district_id);
+
+        $city->save();
+    }
 }

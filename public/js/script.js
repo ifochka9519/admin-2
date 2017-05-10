@@ -1,88 +1,125 @@
 $(function () {
     'use strict';
+
+
+
+    var region_name = '';
     $( "#tags" ).autocomplete({
-		source: availableTags,
+		source: availableTags,  //get regions
         select: function(event, ui) {
-			console.log(ui.item.value);
-         //   $('.regions').on('click', function(){
-              //  var id = $(this).val();
-                $.ajax({
-                    method: 'POST',
-                    url: urlD,
-                    data: {
-                        region: ui.item.value,
-                        _token: token
-                    }
-                })
-                    .done(function (data) {
-
-                        var result = jQuery.parseJSON(data);
-                        var html = '<select class="districts-list">';
-                        for(var k in result) {
-                            html+= '<option value='+result[k]['id']+'>'+result[k]['name']+'</option>';
-                        }
-                        html+= '</select>';
-                        $('#districts').html(html);
-                        $('#districts').parent().show();
-                        //console.log('hi');
+		    region_name = ui.item.value;
+            $.ajax({
+                method: 'POST',
+                url: urlD,
+                data: {
+                    region: ui.item.value,
+                    _token: token
+                }
+            })
+                .done(function (data) {
+                    var result = jQuery.parseJSON(data);  //Get districts
+                    var result2 = [];
+                    $.each(result,function (index,value) {
+                        result2.push(value['name']);
                     })
+                    $( "#tagsD" ).autocomplete({
+                        source: result2,
+                        change: function (event, ui) {
+                            var val  = $('#tagsD').val();
+                            if ($.inArray(val, result2) !== -1){  //districts in array?
+                                $.ajax({
+                                    method: 'POST',
+                                    url: urlC,
+                                    data: {
+                                        district: ui.item.value,
+                                        _token: token
+                                    }
+                                })
+                                    .done(function (data) {
+                                        var result3 = jQuery.parseJSON(data);
+                                        var result4 = [];
+                                        $.each(result3, function (index, value) {
+                                            result4.push(value['name']);
+                                        })
+                                        $("#tagsC").autocomplete({
+                                            source: result4,
+                                            change: function (event, ui) {
+                                                var val3  = $('#tagsC').val();
+                                                if ($.inArray(val3, result4) !== -1){
 
-           // })
+                                                }
+                                                else {
+                                                    $.ajax({
+                                                        method: 'POST',
+                                                        url: urlCN,
+                                                        data: {
+                                                            city: val3,
+                                                            district : val,
+                                                            _token: token
+                                                        }
+                                                    })
+                                                }
+                                            }
+                                        })
+
+                                    })
+
+
+                        }
+                        else{
+
+                                $.ajax({
+                                    method: 'POST',
+                                    url: urlDN,
+                                    data: {
+                                        district: val,
+                                        region : region_name,
+                                        _token: token
+                                    }
+                                })
+                                    .done(function () {
+                                        var arr = [];
+                                        $("#tagsC").autocomplete({
+                                            source: arr,
+                                            change: function () {
+                                                var val2  = $('#tagsC').val();
+                                                $.ajax({
+                                                    method: 'POST',
+                                                    url: urlCN,
+                                                    data: {
+                                                        city: val2,
+                                                        district : val,
+                                                        _token: token
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    })
+                            }
+                    }
+                    })
+                })
 		}
+    });
+    $('#tagsA').autocomplete({
+        source: [],
+        change: function () {
+            var vall  = $('#tagsA').val();
+            $.ajax({
+                method: 'POST',
+                url: urlNA,
+                data: {
+                    address: vall,
+                    city_name : $('#tagsC').val(),
+                    _token: token
+                }
+            })
+            .done(function (data) {
+                $('#address_id').val(data);
+            })
+        }
     });
 });
 
-$(document).ready(function(){
-
-	/*$('.regions').on('click', function(){
-		var id = $(this).val();
-		$.ajax({
-            method: 'POST',
-            url: urlD,
-            data: {
-                region: id,
-                _token: token
-            }
-        })
-			.done(function (data) {
-
-                var result = jQuery.parseJSON(data);
-				var html = '<select class="districts-list">';
-                for(var k in result) {
-                    html+= '<option value='+result[k]['id']+'>'+result[k]['name']+'</option>';
-                }
-                html+= '</select>';
-				$('#districts').html(html);
-                $('#districts').parent().show();
-				//console.log('hi');
-            })
-		
-	})
-*/
-    $(document).on('click', '.districts-list', function(){
-        var id = $(this).val();
-        $.ajax({
-            method: 'POST',
-            url: urlC,
-            data: {
-                district: id,
-                _token: token
-            }
-        })
-            .done(function (data) {
-
-                var result = jQuery.parseJSON(data);
-                var html = '<select class="cities-list">';
-                for(var k in result) {
-                    html+= '<option value='+result[k]['id']+'>'+result[k]['name']+'</option>';
-                }
-                html+= '</select>';
-                $('#cities').html(html);
-                $('#cities').parent().show();
-
-            })
-
-	})
-});
 
 

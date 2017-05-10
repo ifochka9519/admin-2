@@ -38,7 +38,7 @@ class Addresses extends Model {
 
     public function city()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(Cities::class);
     }
     
 }

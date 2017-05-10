@@ -116,4 +116,21 @@ class AddressesController extends Controller {
         return redirect()->route(config('quickadmin.route').'.addresses.index');
     }
 
+
+    public function addNewAddress(Request $request)
+    {
+        $address = new Addresses();
+        $address->address = $request['address'];
+
+        $city = Cities::where('name',$request['city_name'])->get();
+        $city_id = $city[0]->id;
+
+        $address->city_id = $city_id;
+
+        $address->city($city_id);
+
+        $address->save();
+
+        return response($address->id);
+    }
 }
