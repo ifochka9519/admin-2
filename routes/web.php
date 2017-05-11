@@ -22,3 +22,4 @@ Route::post('/admin/addNewDistrict', 'Admin\DistrictsController@addNewDistrict')
 Route::post('/admin/makeListCities', 'Admin\CitiesController@makeList')->name('makeListCities');
 Route::post('/admin/addNewCity', 'Admin\CitiesController@addNewCity')->name('addNewCity');
 Route::post('/admin/addNewAddress', 'Admin\AddressesController@addNewAddress')->name('addNewAddress');
+Route::get('/pdf', 'Admin\OrdersController@makePDF')->name('makePDF');

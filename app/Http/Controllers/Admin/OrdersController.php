@@ -4,16 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Clients;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MailController;
 use App\Statuses;
 use App\TypeOfVisas;
 use App\User;
+use Illuminate\Support\Facades\App;
 use Redirect;
 use Schema;
 use App\Orders;
 use App\Http\Requests\CreateOrdersRequest;
 use App\Http\Requests\UpdateOrdersRequest;
 use Illuminate\Http\Request;
-
+require ('/var/www/html/prosperis-2/public/fpdf/fpdf.php');
 
 
 class OrdersController extends Controller {
@@ -58,7 +60,8 @@ class OrdersController extends Controller {
 	{
         $this->validate($request, [
             'payment' => 'integer',
-            'prepayment' => 'integer'
+            'prepayment' => 'integer',
+            'client_id' => 'required|unique:orders'
         ]);
 
 
@@ -76,6 +79,7 @@ class OrdersController extends Controller {
         $order->user($user);
         $order->client($client);
 
+        $order->pdf = OrdersController::makePDF($order);
 
         $imageName = str_random(30) . '.' .
             $request->file('scan_order_path')->getClientOriginalExtension();
@@ -120,7 +124,8 @@ class OrdersController extends Controller {
     {
         $this->validate($request, [
             'payment' => 'integer',
-            'prepayment' => 'integer'
+            'prepayment' => 'integer',
+            'client_id' => 'required|unique:orders'
         ]);
 
         $orders = Orders::findOrFail($id);
@@ -176,4 +181,24 @@ class OrdersController extends Controller {
         return redirect()->route(config('quickadmin.route').'.orders.index');
     }
 
+    public static function makePDF(Orders $order)
+    {
+
+
+        $pdf = new \FPDF('P','mm','A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Times','B',16);
+        $pdf->Cell(40,10,$order->client->name);
+        $pdf->Cell(40,10,$order->user->name);
+       // $result = $pdf->Output('F','/public/images/orders/pdf/order.pdf',true);
+        $pdf->Output('F','/var/www/html/prosperis-2/public/images/orders/pdf/order'.$order->client->id.'.pdf',true);
+        $way = '/images/orders/pdf/order'.$order->client->id.'.pdf';
+        MailController::sendEmail($pdf, $way);
+        return $way;
+       // dump($pdf->Output());
+       /* $pdf->AddPage();
+       $pdf->SetFont('Times','B',16);
+       $pdf->Cell(40,10,'Hello World!');
+        $pdf->Output();*/
+    }
 }

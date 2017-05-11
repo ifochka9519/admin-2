@@ -20,6 +20,7 @@
                         <th>Клиент</th>
                         <th>Тип визы</th>
                         <th>Статус</th>
+                        <th>Открыть PDF</th>
 
                         <th>&nbsp;</th>
                     </tr>
@@ -35,6 +36,7 @@
                             <td>{{ $row->client->name }}</td>
                             <td>{{ \App\TypeOfVisas::where('id',$row->type_visa_id)->first()->name }}</td>
                             <td>{{ $row->status->name }}</td>
+                            <td class="text-center"><a href="{{$row->pdf}}"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></a></td>
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.orders.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
