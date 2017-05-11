@@ -24,7 +24,7 @@
     {!! Form::label('name', 'Имя', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10 {{ $errors->has('name') ? ' has-error' : '' }}">
         {!! Form::text('name', old('name'), array('class'=>'form-control')) !!}
-        
+        <span class="input-error-msg"></span>
     </div>
 </div>
 
@@ -74,7 +74,7 @@
     {!! Form::label('phone', 'Номер', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10 {{ $errors->has('phone') ? ' has-error' : '' }}">
         {!! Form::text('phone', old('phone'), array('class'=>'form-control')) !!}
-
+        <span class="input-error-msg"></span>
     </div>
 </div>
 
@@ -112,13 +112,14 @@
 <div class="form-group">
     {!! Form::label('regions_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::select('regions_id', $regions, old('regions_id'), ['class'=>'regions form-control']) !!}
+        {!! Form::select('regions_id',  $regions, old('regions_id'), ['class'=>'regions form-control','placeholder' => 'Виберите область']) !!}
     </div>
 </div>
 <div class="form-group">
     {!! Form::label('districts_id', 'Район', ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10" >
         <input id="tagsD" class="ui-autocomplete-input form-control" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+        <span class="input-error-msg"></span>
     </div>
 </div>
 
@@ -131,6 +132,7 @@
     {!! Form::label('city_id', 'Город', ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10" >
         <input id="tagsC" class="ui-autocomplete-input form-control" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+        <span class="input-error-msg"></span>
     </div>
 </div>
 {{--
@@ -145,6 +147,7 @@
     <div class="col-sm-10" >
         <input id="tagsA" class="ui-autocomplete-input form-control" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
         <input type="hidden" name="address_id" id="address_id">
+        <span class="input-error-msg"></span>
     </div>
 
 </div>

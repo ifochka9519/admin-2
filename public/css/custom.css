@@ -3,3 +3,12 @@
     right: 21px;
     top: 10px;
 }
+
+.input-error:focus{
+    border-color: #f3565d
+}
+
+.input-error-msg{
+    display: none;
+    color: #f3565d
+}

@@ -56,6 +56,12 @@ class OrdersController extends Controller {
 	 */
 	public function store(CreateOrdersRequest $request)
 	{
+        $this->validate($request, [
+            'payment' => 'integer',
+            'prepayment' => 'integer'
+        ]);
+
+
 	    $order = new Orders();
         $status = Statuses::find($request['status_id']);
         $typeofvisas = TypeOfVisas::find($request['type_visa_id']);
@@ -112,6 +118,11 @@ class OrdersController extends Controller {
 	 */
 	public function update($id, UpdateOrdersRequest $request)
     {
+        $this->validate($request, [
+            'payment' => 'integer',
+            'prepayment' => 'integer'
+        ]);
+
         $orders = Orders::findOrFail($id);
 
 

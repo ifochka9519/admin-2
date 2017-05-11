@@ -64,11 +64,10 @@ class ClientsController extends Controller {
 	{
 
         $this->validate($request, [
-            'name' => 'required|max:255|regex:/^[A-Z]$/',
+            'name' => 'required|max:255',
             'payment' => 'integer',
             'prepayment' => 'integer',
-            'phone' => 'numeric',
-            'passport' => 'required|min:4|max:12|regex:/[A-Z0-9]/|unique:clients',
+            'passport' => 'required|min:4|max:12|unique:clients',
             'email' => 'required|email|max:255|unique:clients',
         ]);
         $client = Clients::create($request->all());
@@ -118,11 +117,10 @@ class ClientsController extends Controller {
 	{
 		$clients = Clients::findOrFail($id);
         $this->validate($request, [
-            'name' => 'required|max:255|regex:/^[A-Z]$/',
+            'name' => 'required|max:255',
             'payment' => 'integer',
             'prepayment' => 'integer',
-            'phone' => 'numeric',
-            'passport' => 'required|min:4|max:12|regex:/^[A-Z0-9]$/|unique:clients',
+            'passport' => 'required|min:4|max:12|unique:clients',
             'email' => 'required|email|max:255|unique:clients',
         ]);
 
