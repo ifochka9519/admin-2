@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Clients;
+use App\History;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MailController;
 use App\Statuses;
@@ -64,7 +65,7 @@ class OrdersController extends Controller {
             'client_id' => 'required|unique:orders'
         ]);
 
-
+        $history = new History();
 	    $order = new Orders();
         $status = Statuses::find($request['status_id']);
         $typeofvisas = TypeOfVisas::find($request['type_visa_id']);
@@ -93,6 +94,13 @@ class OrdersController extends Controller {
         $order->payment = $request['payment'];
         $order->prepayment = $request['prepayment'];
         $order->save();
+        $history->status_id = $request['status_id'];
+        $history->status_old = null;
+        $history->order_id = $order->id;
+        $history->status_current = $status->name;
+        $history->status($status);
+        $history->order($order);
+        $history->save();
 
 		return redirect()->route(config('quickadmin.route').'.orders.index');
 	}
@@ -125,11 +133,22 @@ class OrdersController extends Controller {
         $this->validate($request, [
             'payment' => 'integer',
             'prepayment' => 'integer',
-            'client_id' => 'required|unique:orders'
+            'client_id' => 'required'
         ]);
 
-        $orders = Orders::findOrFail($id);
 
+        $orders = Orders::findOrFail($id);
+if($orders->status_id != $request['status_id']){
+    $status = Statuses::find($request['status_id']);
+    $history = new History();
+    $history->status_id = $request['status_id'];
+    $history->order_id = $orders->id;
+    $history->status_old = $orders->status->name;
+    $history->status_current = $status->name;
+    $history->status($status);
+    $history->order($orders);
+    $history->save();
+}
 
         $orders->update($request->all());
         if ($request->file('scan_order_path') != null) {
@@ -146,6 +165,7 @@ class OrdersController extends Controller {
 
     }
         $orders->save();
+
 
 
 		return redirect()->route(config('quickadmin.route').'.orders.index');

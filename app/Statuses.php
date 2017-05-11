@@ -35,6 +35,9 @@ class Statuses extends Model {
     {
         $this->hasMany(Orders::class);
     }
-    
-    
+
+    public function histories()
+    {
+        return $this->hasMany(History::class);
+    }
 }

@@ -50,7 +50,11 @@ class Orders extends Model {
     {
         return $this->belongsTo(TypeOfVisas::class);
     }
-    
+
+    public function histories()
+    {
+        return $this->hasMany(History::class);
+    }
     
     
 }
