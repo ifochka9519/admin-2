@@ -15,6 +15,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+/*Route::get('/admin/orders', function () {
+    return view('admin.history');
+})->name('history');*/
 
 
 Route::post('/admin/makeListDistricts', 'Admin\DistrictsController@makeList')->name('makeListDistricts');
@@ -23,3 +26,4 @@ Route::post('/admin/makeListCities', 'Admin\CitiesController@makeList')->name('m
 Route::post('/admin/addNewCity', 'Admin\CitiesController@addNewCity')->name('addNewCity');
 Route::post('/admin/addNewAddress', 'Admin\AddressesController@addNewAddress')->name('addNewAddress');
 Route::get('/pdf', 'Admin\OrdersController@makePDF')->name('makePDF');
+Route::get('/admin/orderHistory/{id}', 'Admin\OrdersController@history')->name('history');

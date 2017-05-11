@@ -95,7 +95,7 @@ class OrdersController extends Controller {
         $order->prepayment = $request['prepayment'];
         $order->save();
         $history->status_id = $request['status_id'];
-        $history->status_old = null;
+        $history->status_old = 'новая';
         $history->order_id = $order->id;
         $history->status_current = $status->name;
         $history->status($status);
@@ -221,4 +221,11 @@ if($orders->status_id != $request['status_id']){
        $pdf->Cell(40,10,'Hello World!');
         $pdf->Output();*/
     }
+
+    public function history($id)
+    {
+        $histories = History::where('order_id', $id)->get();
+        return view('admin.orders.history')->with('histories', $histories);
+    }
+
 }
