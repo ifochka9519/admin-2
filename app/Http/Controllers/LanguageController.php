@@ -30,4 +30,20 @@ class LanguageController extends Controller
         $arr = trans('language.orders_edit');
         return $arr;
     }
+
+    public function ru()
+    {
+        app()->setLocale('ru');
+        return redirect()->back();
+    }
+    public function pl()
+    {
+        app()->setLocale('pl');
+        return redirect()->back();
+    }
+    public function en()
+    {
+        app()->setLocale('en');
+        return redirect()->back();
+    }
 }

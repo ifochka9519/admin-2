@@ -12,11 +12,12 @@
                data-target=".navbar-collapse">
             </a>
 
-            <div class="top-menu">
-                <ul class="nav navbar-nav pull-right">
-
-                </ul>
-            </div>
+                <div  style="font-size: 120%; float: right; margin-right: 5%; width: 30%">
+                <a style="float: right; margin-top: 3%; margin-left: 5%;" href="{{route('en')}}"> en </a>
+                <a style="float: right; margin-top: 3%;  margin-left: 5%;" href="{{route('pl')}}"> pl </a>
+                <a style="float: right; margin-top: 3%;  margin-left: 5%;" href="{{route('ru')}}"> ru </a>
+                </div>
+            //</div>
         </div>
     </div>
 </div>

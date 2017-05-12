@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('{locate}', 'LanguageController@index');
+//Route::get('{locate}', 'LanguageController@index');
 /*Route::get('/admin/orders', function () {
     return view('admin.history');
 })->name('history');*/
@@ -32,3 +32,12 @@ Route::get('/pdf', 'Admin\OrdersController@makePDF')->name('makePDF');
 Route::get('/admin/orderHistory/{id}', 'Admin\OrdersController@history')->name('history');
 Route::post('/sees', 'Admin\NewChangesPolandController@see')->name('sees');
 Route::post('/mee', 'Admin\NewChangesUkraineController@see')->name('mee');
+
+
+
+
+Route::get('/ru', 'LanguageController@ru')->name('ru');
+Route::get('/pl', 'LanguageController@pl')->name('pl');
+Route::get('/en', 'LanguageController@en')->name('en');
+
+
