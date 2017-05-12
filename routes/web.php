@@ -30,3 +30,4 @@ Route::post('/admin/addNewCity', 'Admin\CitiesController@addNewCity')->name('add
 Route::post('/admin/addNewAddress', 'Admin\AddressesController@addNewAddress')->name('addNewAddress');
 Route::get('/pdf', 'Admin\OrdersController@makePDF')->name('makePDF');
 Route::get('/admin/orderHistory/{id}', 'Admin\OrdersController@history')->name('history');
+Route::post('', 'Admin\NewChangesPolandController@see')->name('see');

@@ -16,4 +16,9 @@ class History extends Model
 
         return $this->belongsTo(Statuses::class);
     }
+    public function news()
+    {
+
+        return $this->hasOne(News::class);
+    }
 }

@@ -74,7 +74,7 @@
 
     </div>
 </div>
-
+<input type="hidden" name="manager_id" value="{{$orders->client->user_id}}">
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit(trans('language.orders_edit.update'), array('class' => 'btn btn-primary')) !!}

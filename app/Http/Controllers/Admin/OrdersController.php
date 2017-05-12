@@ -7,6 +7,7 @@ use App\History;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MailController;
+use App\News;
 use App\Statuses;
 use App\TypeOfVisas;
 use App\User;
@@ -41,10 +42,13 @@ class OrdersController extends Controller
             $orders = Auth::user()->orders->where('status_id','!=', 1);
             $words = LanguageController::orders('pl');
 
+        }elseif(Auth::user()->role_id == 3){
+            $orders = Orders::where('manager_id', Auth::user()->id)->get();
+            $words = LanguageController::orders('ru');
+
         }else{
             $orders = Orders::all();
             $words = LanguageController::orders('ru');
-
         }
 
 
@@ -82,6 +86,8 @@ class OrdersController extends Controller
 
         $history = new History();
         $order = new Orders();
+        $news = new News();
+
         $status = Statuses::find($request['status_id']);
         $typeofvisas = TypeOfVisas::find($request['type_visa_id']);
         $user = User::find($request['user_id']);
@@ -108,6 +114,7 @@ class OrdersController extends Controller
 
         $order->payment = $request['payment'];
         $order->prepayment = $request['prepayment'];
+        $order->manager_id = $client->user_id;
         $order->save();
         $history->status_id = $request['status_id'];
         $history->status_old = 'новая';
@@ -116,6 +123,20 @@ class OrdersController extends Controller
         $history->status($status);
         $history->order($order);
         $history->save();
+        $news->poland_id = $user->id;
+        $news->manager_id = $client->user_id;
+        $news->history_id = $history->id;
+        $news->user(User::find($client->user_id));
+        $news->history($history);
+        if($request['status_id'] == 2){
+            MailController::sendEmail($order->pdf);
+
+        }
+        if($request['status_id'] != 1){
+            $news->poland_id = $request['user_id'];
+        }
+        $news->save();
+
 
         return redirect()->route(config('quickadmin.route') . '.orders.index');
     }
@@ -160,12 +181,20 @@ class OrdersController extends Controller
             'client_id' => 'required'
         ]);
 
-
+        $news = new News();
         $orders = Orders::findOrFail($id);
         if ($orders->status_id != $request['status_id']) {
             if($request['status_id'] == 2){
                 MailController::sendEmail($orders->pdf);
+
             }
+
+
+            if($request['status_id'] != 1){
+                $news->poland_id = $request['user_id'];
+            }
+
+
             $status = Statuses::find($request['status_id']);
             $history = new History();
             $history->status_id = $request['status_id'];
@@ -175,6 +204,11 @@ class OrdersController extends Controller
             $history->status($status);
             $history->order($orders);
             $history->save();
+            $news->manager_id = $orders->client->user_id;
+            $news->history_id = $history->id;
+            $news->user(User::find($orders->client->user_id));
+            $news->history($history);
+            $news->save();
             MailController::updateStatus($history->order_id ,$history->status_old, $history->status_current, $history->created_at);
         }
 

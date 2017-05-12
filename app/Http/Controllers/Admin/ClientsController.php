@@ -9,6 +9,7 @@ use App\Districts;
 use App\Http\Controllers\Controller;
 use App\Regions;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Redirect;
 use Schema;
 use App\Clients;
@@ -29,8 +30,13 @@ class ClientsController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $clients = Clients::all();
 
+        if(Auth::user()->role_id == 3) {
+            $clients = Clients::where('user_id', Auth::user()->id)->get();
+        }
+        else{
+            $clients = Clients::all();
+        }
 		return view('admin.clients.index', compact('clients'));
 	}
 

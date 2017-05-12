@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @if ($histories->count())
+    @if ($news->count())
         <div class="portlet box green">
             <div class="portlet-title">
                 <div class="caption">{{ trans('quickadmin::templates.templates-view_index-list') }}</div>
@@ -14,6 +14,7 @@
                         <th>
                             {!! Form::checkbox('delete_all',1,false,['class' => 'mass']) !!}
                         </th>
+                        <th>№ ЗАЯВКИ</th>
                         <th>Текущий статус</th>
                         <th>Предыдущий статус</th>
                         <th>Время изменения</th>
@@ -23,16 +24,19 @@
                     </thead>
 
                     <tbody>
-                    @foreach ($histories as $row)
+                    @foreach ($news as $rows)
                         <tr>
+
                             <td>
-                                {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
+                                {!! Form::checkbox('del-'.$rows->id,1,false,['class' => 'single','data-id'=> $rows->id]) !!}
                             </td>
-                            <td>{{ $row->status_current }}</td>
-                            <td>{{ $row->status_old }}</td>
-                            <td>{{ $row->created_at }}</td>
+                            <td>{{ $rows->history->order_id }}</td>
+                            <td>{{ $rows->history->status_current }}</td>
+                            <td>{{ $rows->history->status_old }}</td>
+                            <td>{{ $rows->created_at }}</td>
 
                         </tr>
+
                     @endforeach
                     </tbody>
                 </table>
@@ -51,6 +55,4 @@
     @else
         {{ trans('quickadmin::templates.templates-view_index-no_entries_found') }}
     @endif
-
-
 @endsection

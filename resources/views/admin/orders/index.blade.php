@@ -16,7 +16,9 @@
                         <th>
                             {!! Form::checkbox('delete_all',1,false,['class' => 'mass']) !!}
                         </th>
+                        @if(app()->getLocale() != 'pl')
                         <th>{{$words['pole']}}</th>
+                        @endif
                         <th>{{$words['client']}}</th>
                         <th>{{$words['type_visa']}}</th>
                         <th>{{$words['status']}}</th>
@@ -32,7 +34,9 @@
                             <td>
                                 {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
                             </td>
+                            @if(app()->getLocale() != 'pl')
                             <td>{{ $row->user->name }}</td>
+                            @endif
                             <td>{{ $row->client->name }}</td>
                             @if(app()->getLocale() == 'pl')
                                 <td>{{ \App\TypeOfVisas::where('id',$row->type_visa_id)->first()->name_pl }}</td>
