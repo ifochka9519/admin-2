@@ -18,6 +18,12 @@ class LanguageController extends Controller
         $arr = trans('language.orders');
         return $arr;
     }
+    public static function  news($locate)
+    {
+        app()->setLocale($locate);
+        $arr = trans('language.news');
+        return $arr;
+    }
     public static function  orders_edit($locate)
     {
         app()->setLocale($locate);

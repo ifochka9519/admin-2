@@ -5,17 +5,17 @@
     @if ($news->count())
         <div class="portlet box green">
             <div class="portlet-title">
-                <div class="caption">{{ trans('quickadmin::templates.templates-view_index-list') }}</div>
+                <div class="caption">{{$words['list']}}</div>
             </div>
             <div class="portlet-body">
                 <table class="table table-striped table-hover table-responsive datatable" id="datatablepl">
                     <thead>
                     <tr>
 
-                        <th>№ ЗАЯВКИ</th>
-                        <th>Текущий статус</th>
-                        <th>Предыдущий статус</th>
-                        <th>Время изменения</th>
+                        <th>{{$words['number']}}</th>
+                        <th>{{$words['status_current']}}</th>
+                        <th>{{$words['status_old']}}</th>
+                        <th>{{$words['time_changes']}}</th>
 
 
                     </tr>
@@ -41,7 +41,7 @@
                     <div class="col-xs-12">
                         <form action="{{route('sees')}}" method="post">
                         <button type="submit" class="btn btn-danger" id="delete">
-                            SEE IT
+                            {{$words['see_it']}}
                         </button>
 
                             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

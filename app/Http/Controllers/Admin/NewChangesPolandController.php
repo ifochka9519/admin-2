@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\History;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\LanguageController;
 use App\News;
 use App\Statuses;
 use App\User;
@@ -22,15 +23,16 @@ class NewChangesPolandController extends Controller
 
     public function index()
     {
-
         $user = Auth::user();
         $news = [];
+        $words=[];
         if ($user->role_id == 4) {
+            $words = LanguageController::news('pl');
             $news = News::all()->where('poland_id', $user->id)->sortByDesc('created_at');
         }
 
 
-        return view('admin.newchangespoland.index')->with('news', $news);
+        return view('admin.newchangespoland.index')->with(['news'=>$news, 'words'=>$words]);
 
     }
 

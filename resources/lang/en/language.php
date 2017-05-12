@@ -33,5 +33,13 @@ return [
         'scan'=>'scan',
         'update'=>'update',
         'cancel'=>'cancel'
+    ],
+    'news'=>[
+        'list'=>'list',
+        'number'=>'number',
+        'status_current'=>'status current',
+        'status_old'=>'status old',
+        'time_changes'=>'time changes',
+        'see_it'=>'see it'
     ]
 ];

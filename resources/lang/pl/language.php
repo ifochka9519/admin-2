@@ -33,5 +33,13 @@ return [
         'scan'=>'skandować',
         'update'=>'aktualizacja',
         'cancel'=>'anulować'
+    ],
+    'news'=>[
+        'list'=>'lista',
+        'number'=>'number',
+        'status_current'=>'obecny stan',
+        'status_old'=>'status starego',
+        'time_changes'=>'zmiany czasu',
+        'see_it'=>'zobacz to'
     ]
 ];
