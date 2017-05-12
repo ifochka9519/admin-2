@@ -42,14 +42,17 @@
                 </table>
                 <div class="row">
                     <div class="col-xs-12">
-                        <button class="btn btn-danger" id="delete">
-                            {{ trans('quickadmin::templates.templates-view_index-delete_checked') }}
-                        </button>
+                        <form action="{{route('mee')}}" method="post">
+                            <button type="submit" class="btn btn-danger" id="delete">
+                                SEE IT
+                            </button>
+
+                            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+
+                        </form>
                     </div>
                 </div>
-                {!! Form::open(['route' => config('quickadmin.route').'.orders.massDelete', 'method' => 'post', 'id' => 'massDelete']) !!}
-                <input type="hidden" id="send" name="toDelete">
-                {!! Form::close() !!}
+
             </div>
         </div>
     @else

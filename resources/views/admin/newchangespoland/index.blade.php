@@ -23,8 +23,8 @@
 
                     <tbody>
                     @foreach ($news as $rows)
+                        @if($rows->history->status_id !='1')
                         <tr>
-
 
                             <td>{{ $rows->history->order_id }}</td>
                             <td>{{ $rows->history->status_current }}</td>
@@ -32,13 +32,14 @@
                             <td>{{ $rows->created_at }}</td>
 
                         </tr>
+                        @endif
 
                     @endforeach
                     </tbody>
                 </table>
                 <div class="row">
                     <div class="col-xs-12">
-                        <form action="{{route('see')}}" method="post">
+                        <form action="{{route('sees')}}" method="post">
                         <button type="submit" class="btn btn-danger" id="delete">
                             SEE IT
                         </button>

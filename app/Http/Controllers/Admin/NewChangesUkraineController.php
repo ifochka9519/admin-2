@@ -26,4 +26,16 @@ class NewChangesUkraineController extends Controller {
 		return view('admin.newchangesukraine.index')->with('news',$news);
 	}
 
+    public function see()
+    {
+        $user = Auth::user();
+        $news = News::all();
+        foreach ($news as $new){
+            if($new->manager_id == $user->id){
+                $new->manager_id = 0;
+                $new->save();
+            }
+        }
+        return redirect('/admin');
+    }
 }
