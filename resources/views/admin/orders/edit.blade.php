@@ -69,7 +69,7 @@
 <div class="form-group">
     <lable for="scan_order_path" class="col-sm-2 control-label">{{ trans("language.orders_edit.scan") }}</lable>
     <div class="col-sm-10">
-        <img src="{{$orders->scan_order_path}}" alt="">
+        <img src="{{$orders->scan_order_path}}" width="100px" alt="">
         {!! Form::file('scan_order_path', old('scan_order_path',$orders->scan_order_path), array('class'=>'form-control')) !!}
 
     </div>

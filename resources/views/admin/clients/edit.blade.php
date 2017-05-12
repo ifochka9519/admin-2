@@ -55,7 +55,7 @@
 <div class="form-group">
     {!! Form::label('scan_passport_path', 'Скан паспорта', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        <img src="{{$clients->scan_passport_path}}" alt="">
+        <img width="100px" src="{{$clients->scan_passport_path}}" alt="">
         {!! Form::file('scan_passport_path', old('scan_passport_path',$clients->scan_passport_path), array('class'=>'form-control')) !!}
 
     </div>
@@ -120,14 +120,7 @@
 <div class="form-group" id="old-address">
     {!! Form::label('address_id', 'Адрес', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-{{--
-      //  {{dump($clients->address->cities->district)}}\App\Districts::where('id',$clients->address->city->districts_id)->first()->name
---}}
-        {{--{{
 
-      // dump(\App\Regions::where('id', \App\Districts::where('id',$clients->address->city->districts_id)->first()->regions_id))
-      //dump(\App\Districts::where('id',$clients->address->city->districts_id)->first()->regions_id)
-        }}--}}
         {!! Form::text('address_id', old('address_id',$region->name .','.$district->name .','.$city->name.','.$clients->address->address), array('class'=>'form-control','id'=>'address_id', 'readonly')) !!}
 
         <i class="edit-icon fa fa-pencil fa-3x" aria-hidden="true"></i>
