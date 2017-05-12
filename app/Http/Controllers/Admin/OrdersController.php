@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Clients;
 use App\History;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MailController;
 use App\Statuses;
 use App\TypeOfVisas;
@@ -34,24 +35,20 @@ class OrdersController extends Controller
      */
     public function index(Request $request)
     {
-//$orders = new Collection();
+
 
         if(Auth::user()->role_id == 4){
             $orders = Auth::user()->orders->where('status_id','!=', 1);
-            /*foreach ($orders2 as $order2){
-                if($order2->status_id != 1){
-                    $orders->add($order2);
+            $words = LanguageController::orders('pl');
 
-                }*/
-
-            //}
         }else{
             $orders = Orders::all();
+            $words = LanguageController::orders('ru');
 
         }
 
 
-        return view('admin.orders.index', compact('orders'));
+        return view('admin.orders.index')->with(['orders'=>$orders,'words'=>$words]);
     }
 
     /**
@@ -131,13 +128,22 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->role_id == 4){
+            $words = LanguageController::orders_edit('pl');
+            $statuses = Statuses::pluck('name_pl', 'id');
+            $typeofvisas = TypeOfVisas::pluck('name_pl', 'id');
+
+        }else{
+            $words = LanguageController::orders_edit('ru');
+            $statuses = Statuses::pluck('name', 'id');
+            $typeofvisas = TypeOfVisas::pluck('name', 'id');
+        }
         $orders = Orders::find($id);
-        $statuses = Statuses::pluck('name', 'id');
-        $typeofvisas = TypeOfVisas::pluck('name', 'id');
+
         $clients = Clients::pluck('name', 'id');
         $users = User::where('role_id', 4)->pluck('name', 'id');
 
-        return view('admin.orders.edit')->with(['orders' => $orders, 'clients' => $clients, 'users' => $users, 'typeofvisas' => $typeofvisas, 'statuses' => $statuses]);
+        return view('admin.orders.edit')->with(['orders' => $orders, 'clients' => $clients, 'users' => $users, 'typeofvisas' => $typeofvisas, 'statuses' => $statuses, 'words' => $words]);
     }
 
     /**

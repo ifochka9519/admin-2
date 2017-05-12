@@ -15,6 +15,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('{locate}', 'LanguageController@index');
 /*Route::get('/admin/orders', function () {
     return view('admin.history');
 })->name('history');*/
