@@ -55,6 +55,10 @@ class Orders extends Model {
     {
         return $this->hasMany(History::class);
     }
-    
+
+    public function corridors()
+    {
+        return $this->hasMany(Corridor::class);
+    }
     
 }

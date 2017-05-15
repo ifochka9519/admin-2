@@ -202,7 +202,55 @@ $(function () {
         console.log(input.search(regexp));
     })
 
+    $('.visas').on('click', function () {
+        var id = $(this).val();
+        if((id == 1)||(id==2)){
+            $('#status').css('display','block');
+            $('#pole').css('display','block');
+            $('#client').css('display','block');
+            $('#payment').css('display','block');
+            $('#prepayment').css('display','block');
+            $('#parent1').css('display','block');
+            $('#parent2').css('display','block');
+            $('#data_start').css('display','block');
+            $('#data_finish').css('display','block');
 
+            $('#lenght').css('display','none');
+            $('#data_output').css('display','none');
+            $('#home').css('display','none');
+        }
+        if(id==3){
+            $('#status').css('display','block');
+            $('#pole').css('display','block');
+            $('#client').css('display','block');
+            $('#payment').css('display','block');
+            $('#prepayment').css('display','block');
+            $('#data_start').css('display','block');
+            $('#data_finish').css('display','block');
+            $('#lenght').css('display','block');
+            $('#data_output').css('display','block');
+
+
+            $('#parent1').css('display','none');
+            $('#parent2').css('display','none');
+            $('#home').css('display','none');
+        }
+        if(id == 4){
+            $('#status').css('display','block');
+            $('#pole').css('display','block');
+            $('#client').css('display','block');
+            $('#payment').css('display','block');
+            $('#prepayment').css('display','block');
+            $('#parent1').css('display','block');
+            $('#parent2').css('display','block');
+            $('#home').css('display','block');
+
+            $('#lenght').css('display','none');
+            $('#data_output').css('display','none');
+            $('#data_start').css('display','none');
+            $('#data_finish').css('display','none');
+        }
+    })
 
 
 })
