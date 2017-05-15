@@ -96,12 +96,12 @@
     <div class="col-md-2"></div>
     <div class="col-sm-10 col-md-5">
         {!! Form::label('lenght1', '2 месяца', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::checkBox('lenght2','', false, array('id'=>'ch1')) !!}
+        {!! Form::checkBox('lenght1','1', false, array('id'=>'ch1')) !!}
 
     </div>
     <div class="col-sm-10 col-md-5">
         {!! Form::label('lenght2', 'Весь период', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::checkBox('lenght2','', false, array('id'=>'ch2')) !!}
+        {!! Form::checkBox('lenght2','1', false, array('id'=>'ch2')) !!}
 
     </div>
 

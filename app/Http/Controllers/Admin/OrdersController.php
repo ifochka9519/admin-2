@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Clients;
+use App\Corridor;
 use App\History;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LanguageController;
@@ -11,6 +12,7 @@ use App\News;
 use App\Statuses;
 use App\TypeOfVisas;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -88,6 +90,14 @@ class OrdersController extends Controller
         $order = new Orders();
         $news = new News();
 
+        $order->parent_1 = $request['parent_1'];
+        $order->parent_2 = $request['parent_2'];
+        $order->home = $request['home'];
+        $order->data_start = $request['data_start'];
+        $order->data_finish = $request['data_finish'];
+        $order->data_output = $request['data_output'];
+        $order->lenght1 = $request['lenght1'];
+        $order->lenght2 = $request['lenght2'];
         $status = Statuses::find($request['status_id']);
         $typeofvisas = TypeOfVisas::find($request['type_visa_id']);
         $user = User::find($request['user_id']);
@@ -101,20 +111,21 @@ class OrdersController extends Controller
         $order->user($user);
         $order->client($client);
 
-        $order->pdf = OrdersController::makePDF($order);
+        //$order->pdf = OrdersController::makePDF($order);
 
-        $imageName = str_random(30) . '.' .
+    /*    $imageName = str_random(30) . '.' .
             $request->file('scan_order_path')->getClientOriginalExtension();
 
         $request->file('scan_order_path')->move(
             base_path() . '/public/images/orders/', $imageName
         );
 
-        $order->scan_order_path = '/images/orders/' . $imageName;
+        $order->scan_order_path = '/images/orders/' . $imageName;*/
 
         $order->payment = $request['payment'];
         $order->prepayment = $request['prepayment'];
         $order->manager_id = $client->user_id;
+
         $order->save();
         $history->status_id = $request['status_id'];
         $history->status_old = 'новая';
@@ -136,6 +147,46 @@ class OrdersController extends Controller
             $news->poland_id = $request['user_id'];
         }
         $news->save();
+
+
+        if($request['data_finish1']!= $request['data_start1']){
+            $corridor = new Corridor();
+            $corridor->start = $request['data_start1'];
+            $corridor->end = $request['data_finish1'];
+            $corridor->order_id = $order->id;
+            $corridor->save();
+            $corridor->order($order);
+        }
+
+        if($request['data_finish2']!= $request['data_start2']){
+            $corridor = new Corridor();
+            $corridor->start = $request['data_start2'];
+            $corridor->end = $request['data_finish2'];
+            $corridor->order_id = $order->id;
+            $corridor->save();
+            $corridor->order($order);
+        }
+
+
+        if($request['data_finish3']!= $request['data_start3']){
+            $corridor = new Corridor();
+            $corridor->start = $request['data_start3'];
+            $corridor->end = $request['data_finish3'];
+            $corridor->order_id = $order->id;
+            $corridor->save();
+            $corridor->order($order);
+        }
+
+
+        if($request['data_finish4']!= $request['data_start4']){
+            $corridor = new Corridor();
+            $corridor->start = $request['data_start4'];
+            $corridor->end = $request['data_finish4'];
+            $corridor->order_id = $order->id;
+            $corridor->save();
+            $corridor->order($order);
+        }
+
 
 
         return redirect()->route(config('quickadmin.route') . '.orders.index');
@@ -184,10 +235,10 @@ class OrdersController extends Controller
         $news = new News();
         $orders = Orders::findOrFail($id);
         if ($orders->status_id != $request['status_id']) {
-            if($request['status_id'] == 2){
+           /* if($request['status_id'] == 2){
                 MailController::sendEmail($orders->pdf);
 
-            }
+            }*/
 
 
             if($request['status_id'] != 1){
@@ -262,7 +313,7 @@ class OrdersController extends Controller
         return redirect()->route(config('quickadmin.route') . '.orders.index');
     }
 
-    public static function makePDF(Orders $order)
+/*    public static function makePDF(Orders $order)
     {
         $pdf = new \FPDF('P', 'mm', 'A4');
         $pdf->AddPage();
@@ -272,7 +323,7 @@ class OrdersController extends Controller
         $pdf->Output('F', '/var/www/html/prosperis-2/public/images/orders/pdf/order' . $order->client->id . '.pdf', true);
         $way = '/images/orders/pdf/order' . $order->client->id . '.pdf';
         return $way;
-    }
+    }*/
 
     public function history($id)
     {
