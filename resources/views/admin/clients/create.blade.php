@@ -103,11 +103,7 @@
 
 
 
-{{--<div class="form-group">
-{!! Form::label('regions_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}
-    <input id="tags" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
 
-</div>--}}
 
 <div class="form-group">
     {!! Form::label('regions_id', 'Область', ['class'=>'col-sm-2 control-label']) !!}
@@ -123,11 +119,6 @@
     </div>
 </div>
 
-{{--<div class="form-group" style="display: none;">
-    {!! Form::label('districts_id', 'Район', ['class'=>'col-sm-2 control-label']) !!}
-    <div class="col-sm-10" id="districts">
-    </div>
-</div>--}}
 <div class="form-group">
     {!! Form::label('city_id', 'Город', ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10" >
@@ -135,13 +126,7 @@
         <span class="input-error-msg"></span>
     </div>
 </div>
-{{--
-<div class="form-group" style="display: none;">
-    {!! Form::label('city_id', 'Город', ['class'=>'col-sm-2 control-label']) !!}
-    <div class="col-sm-10" id="cities">
-    </div>
-</div>
---}}
+
 <div class="form-group">
     {!! Form::label('address_id', 'Адресс', ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10" >
@@ -151,13 +136,6 @@
     </div>
 
 </div>
-
-{{--<div class="form-group">
-    {!! Form::label('address_id', 'Адресс', ['class'=>'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::select('address_id', $addresses, old('address_id'), ['class'=>'form-control']) !!}
-    </div>
-</div>--}}
 
 
 <div class="form-group">

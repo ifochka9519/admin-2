@@ -1,5 +1,6 @@
 $(function () {
     'use strict';
+    var i = 0;
 
 
     $('.regions').on('click', function () {
@@ -218,6 +219,16 @@ $(function () {
             $('#lenght').css('display','none');
             $('#data_output').css('display','none');
             $('#home').css('display','none');
+            $('#plus').css('display','none');
+            $('#data_start1').css('display','none');
+            $('#data_finish1').css('display','none');
+            $('#data_start2').css('display','none');
+            $('#data_finish2').css('display','none');
+            $('#data_start3').css('display','none');
+            $('#data_finish3').css('display','none');
+            $('#data_start4').css('display','none');
+            $('#data_finish4').css('display','none');
+            i = 0;
         }
         if(id==3){
             $('#status').css('display','block');
@@ -229,7 +240,7 @@ $(function () {
             $('#data_finish').css('display','block');
             $('#lenght').css('display','block');
             $('#data_output').css('display','block');
-
+            $('#plus').css('display','block');
 
             $('#parent1').css('display','none');
             $('#parent2').css('display','none');
@@ -246,11 +257,31 @@ $(function () {
             $('#home').css('display','block');
 
             $('#lenght').css('display','none');
+            $('#plus').css('display','none');
             $('#data_output').css('display','none');
             $('#data_start').css('display','none');
             $('#data_finish').css('display','none');
+            $('#data_start1').css('display','none');
+            $('#data_finish1').css('display','none');
+            $('#data_start2').css('display','none');
+            $('#data_finish2').css('display','none');
+            $('#data_start3').css('display','none');
+            $('#data_finish3').css('display','none');
+            $('#data_start4').css('display','none');
+            $('#data_finish4').css('display','none');
+            i=0;
         }
     })
-
+$('#plus-fa').on('click',function () {
+    i++;
+    $('#date_'+i).css('display','block');
+    $('#w'+i).css('display','block');
+   var start = document.getElementById('datastart');
+   var finish = document.getElementById('datafinish');
+    var date1 = start.value;
+    var date2 = finish.value;
+    var date = Date.parse(date2)-Date.parse(date1)
+    console.log(date/86400/1000+1);
+})
 
 })
