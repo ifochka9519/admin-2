@@ -6,6 +6,7 @@ use App\Addresses;
 use App\Cities;
 use App\Customers;
 use App\Districts;
+use App\History;
 use App\Http\Controllers\Controller;
 use App\Orders;
 use App\Regions;
@@ -197,10 +198,14 @@ class ClientsController extends Controller {
     public function history($id)
     {
         $client = Clients::find($id);
-        $order = Orders::where('status_id','!=',6)->where('client_id',$id)->first();
+        $order = Orders::where('status_id','!=',6)->where('status_id','!=',5)->where('client_id',$id)->first();
         $orders = Orders::all()->where('status_id',6)->where('client_id',$id);
+        if($order!=null)
+        $histories = History::where('order_id', $order->id)->get();
+        else
+            $histories = [];
 
-        return view('admin.clients.history')->with(['client'=> $client,'current_order'=>$order,'orders'=>$orders]);
+        return view('admin.clients.history')->with(['client'=> $client,'current_order'=>$order,'orders'=>$orders,'histories'=>$histories]);
     }
 
 }

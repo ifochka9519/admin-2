@@ -17,7 +17,7 @@ class ArchiveController extends Controller {
 	 */
 	public function index()
     {
-        $orders = Orders::all()->where('status_id', 6);
+        $orders = Orders::where('status_id', '6')->orWhere('status_id', '5')->get();
         $words = LanguageController::orders('ru');
 		return view('admin.archive.index')->with(['orders'=>$orders, 'words'=>$words]);
 	}

@@ -55,4 +55,5 @@
     @else
         {{ trans('quickadmin::templates.templates-view_index-no_entries_found') }}
     @endif
+    <i  class="fa fa-eye" aria-hidden="true"></i>
 @endsection

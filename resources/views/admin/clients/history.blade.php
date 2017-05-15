@@ -2,9 +2,48 @@
 
 @section('content')
 
-    {{dump($client)}}
+   {{-- {{dump($client)}}
     {{dump($current_order)}}
     {{dump($orders)}}
+    --}}
+
+    <h1>{{$client->name}}</h1>
+    <h1>{{$client->user->name}}</h1>
+
+   <details>
+       <summary>Current order</summary>
+
+       @if ($histories->count())
+
+               <table class="table table-striped table-hover table-responsive datatable" id="datatable">
+                   <thead>
+                   <tr>
+                       <th>Номер заявки</th>
+                       <th>Текущий статус</th>
+                       <th>Предыдущий статус</th>
+                       <th>Время изменения</th>
+                       <th>Кто измененил</th>
+
+                   </tr>
+                   </thead>
+
+                   <tbody>
+                   @foreach ($histories as $row)
+                       <tr>
+
+                           <td>{{ $row->order_id }}</td>
+                           <td>{{ $row->status_current }}</td>
+                           <td>{{ $row->status_old }}</td>
+                           <td>{{ $row->created_at }}</td>
+                           <td>{{ $row->user_name }}</td>
+
+                       </tr>
+                   @endforeach
+                   </tbody>
+               </table>
+           @endif
+
+   </details>
 
    {{-- @if ($histories->count())
         <div class="portlet box green">
