@@ -228,6 +228,7 @@ $(function () {
             $('#data_finish3').css('display','none');
             $('#data_start4').css('display','none');
             $('#data_finish4').css('display','none');
+            $('#plus-btn').css('display','none');
             i = 0;
         }
         if(id==3){
@@ -269,19 +270,60 @@ $(function () {
             $('#data_finish3').css('display','none');
             $('#data_start4').css('display','none');
             $('#data_finish4').css('display','none');
+            $('#plus-btn').css('display','none');
             i=0;
         }
     })
 $('#plus-fa').on('click',function () {
     i++;
     $('#date_'+i).css('display','block');
+    $('#plus-btn').css('display','block');
     $('#w'+i).css('display','block');
-   var start = document.getElementById('datastart');
-   var finish = document.getElementById('datafinish');
-    var date1 = start.value;
-    var date2 = finish.value;
-    var date = Date.parse(date2)-Date.parse(date1)
-    console.log(date/86400/1000+1);
 })
+
+    $('#text_day').on('click',function () {
+        var date11 = document.getElementById('datastart1').value;
+        var date12 = document.getElementById('datafinish1').value;
+        var date21 = document.getElementById('datastart2').value;
+        var date22 = document.getElementById('datafinish2').value;
+        var date31 = document.getElementById('datastart3').value;
+        var date32 = document.getElementById('datafinish3').value;
+        var date41 = document.getElementById('datastart4').value;
+        var date42 = document.getElementById('datafinish4').value;
+        var date = 0;
+        var dn = 0;
+        if((Date.parse(date12)-Date.parse(date11))>0){
+            date += Date.parse(date12)-Date.parse(date11);
+            dn++;
+        }
+        if((Date.parse(date22)-Date.parse(date21))>0){
+            date += Date.parse(date22)-Date.parse(date21);
+            dn++;
+        }
+        if((Date.parse(date32)-Date.parse(date31))>0){
+            date += Date.parse(date32)-Date.parse(date31);
+            dn++;
+        }
+        if((Date.parse(date42)-Date.parse(date41))>0){
+            date += Date.parse(date42)-Date.parse(date41);
+            dn++;
+        }
+
+        $(this).html(date/86400/1000+dn + ' дн.');
+
+    })
+    $('#ch1').on('click',function () {
+        if($('#ch2').is(":checked")){
+            $('#ch2').prop("checked", false);
+        }
+    })
+
+    $('#ch2').on('click',function () {
+        if($('#ch1').is(":checked")){
+            $('#ch1').prop("checked", false);
+        }
+    })
+
+
 
 })

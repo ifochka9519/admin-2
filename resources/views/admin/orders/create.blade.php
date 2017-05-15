@@ -91,6 +91,23 @@
     </div>
 
 </div>
+
+<div class="form-group" id="lenght" style="display:none">
+    <div class="col-md-2"></div>
+    <div class="col-sm-10 col-md-5">
+        {!! Form::label('lenght1', '2 месяца', array('class'=>'col-sm-2 control-label')) !!}
+        {!! Form::checkBox('lenght2','', false, array('id'=>'ch1')) !!}
+
+    </div>
+    <div class="col-sm-10 col-md-5">
+        {!! Form::label('lenght2', 'Весь период', array('class'=>'col-sm-2 control-label')) !!}
+        {!! Form::checkBox('lenght2','', false, array('id'=>'ch2')) !!}
+
+    </div>
+
+
+</div>
+
 <div class="row">
 <div class="col-md-2" id="w1" style="display:none"></div>
     <div class="col-md-4" id="date_1" style="display:none">
@@ -99,7 +116,7 @@
 <div class="form-group" id="data_start1" >
     <div class=" ">
     {!! Form::label('data_start1', 'От', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::date('data_start1', \Carbon\Carbon::now(), array('class'=>'form-control')) !!}
+        {!! Form::date('data_start1', \Carbon\Carbon::now(), array('class'=>'form-control', 'id'=>'datastart1')) !!}
 
     </div>
 
@@ -108,7 +125,7 @@
 <div class="form-group" id="data_finish1" >
     <div class="">
     {!! Form::label('data_finish1', 'До', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::date('data_finish1', \Carbon\Carbon::now(), array('class'=>'form-control' , 'id'=>'data_finish1')) !!}
+        {!! Form::date('data_finish1', \Carbon\Carbon::now(), array('class'=>'form-control' , 'id'=>'datafinish1')) !!}
 
     </div>
 
@@ -120,7 +137,7 @@
 <div class="form-group" id="data_start2" >
     <div class=" ">
     {!! Form::label('data_start2', 'От', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::date('data_start2', \Carbon\Carbon::now(), array('class'=>'form-control')) !!}
+        {!! Form::date('data_start2', \Carbon\Carbon::now(), array('class'=>'form-control', 'id'=>'datastart2')) !!}
 
     </div>
 
@@ -130,75 +147,77 @@
 <div class="form-group" id="data_finish2" >
     <div class="">
     {!! Form::label('data_finish2', 'До', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::date('data_finish2', \Carbon\Carbon::now(), array('class'=>'form-control')) !!}
-
     </div>
+    {!! Form::date('data_finish2', \Carbon\Carbon::now(), array('class'=>'form-control', 'id'=>'datafinish2')) !!}
+
 
 </div>
 </div>
 </div>
-<div class="form-group" id="data_start3" style="display:none">
-    <div class="col-md-5">
-    {!! Form::label('data_start3', 'От', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::date('data_start3', \Carbon\Carbon::now(), array('class'=>'form-control')) !!}
+<div class="row">
+    <div class="col-md-2" id="w3" style="display:none"></div>
+    <div class="col-md-4" id="date_3" style="display:none">
 
+
+        <div class="form-group" id="data_start3" >
+            <div class=" ">
+                {!! Form::label('data_start3', 'От', array('class'=>'col-sm-2 control-label')) !!}
+                {!! Form::date('data_start3', \Carbon\Carbon::now(), array('class'=>'form-control', 'id'=>'datastart3')) !!}
+
+            </div>
+
+        </div>
+
+        <div class="form-group" id="data_finish3" >
+            <div class="">
+                {!! Form::label('data_finish3', 'До', array('class'=>'col-sm-2 control-label')) !!}
+                {!! Form::date('data_finish3', \Carbon\Carbon::now(), array('class'=>'form-control' , 'id'=>'datafinish3')) !!}
+
+            </div>
+
+        </div>
     </div>
+    <div class="col-md-1" id="w4" style="display:none"></div>
+    <div class="col-md-4" id="date_4" style="display:none">
 
-</div>
+        <div class="form-group" id="data_start4" >
+            <div class=" ">
+                {!! Form::label('data_start4', 'От', array('class'=>'col-sm-2 control-label')) !!}
+                {!! Form::date('data_start4', \Carbon\Carbon::now(), array('class'=>'form-control', 'id'=>'datastart4')) !!}
 
-<div class="form-group" id="data_finish3" style="display:none">
-    <div class="col-md-5 ">
-    {!! Form::label('data_finish3', 'До', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::date('data_finish3', \Carbon\Carbon::now(), array('class'=>'form-control')) !!}
+            </div>
 
+        </div>
+
+
+        <div class="form-group" id="data_finish4" >
+            <div class="">
+                {!! Form::label('data_finish4', 'До', array('class'=>'col-sm-2 control-label')) !!}
+            </div>
+            {!! Form::date('data_finish4', \Carbon\Carbon::now(), array('class'=>'form-control', 'id'=>'datafinish4')) !!}
+
+
+        </div>
     </div>
-
-</div>
-
-<div class="form-group" id="data_start4" style="display:none">
-    <div class="col-md-5 ">
-    {!! Form::label('data_start4', 'От', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::date('data_start4', \Carbon\Carbon::now(), array('class'=>'form-control')) !!}
-
-    </div>
-
-</div>
-
-<div class="form-group" id="data_finish4" style="display:none">
-    <div class="col-md-5 ">
-    {!! Form::label('data_finish4', 'До', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::date('data_finish4', \Carbon\Carbon::now(), array('class'=>'form-control')) !!}
-
-    </div>
-
 </div>
 
 
 <div class="form-group" id="plus" style="display:none">
     {!! Form::label('plus', 'Добавить коридор', array('class'=>'col-sm-2 control-label')) !!}
-    <div class="col-sm-10 ">
+    <div class="col-sm-1 ">
         <i class="fa fa-plus-square-o fa-5x" id="plus-fa" aria-hidden="true"></i>
-        <p id="text_day"></p>
     </div>
-
+</div>
+    <div class="form-group" id="plus-btn" style="display:none">
+        <div class="col-md-2"></div>
+        <div class="col-md-5 ">
+    <h3  id="text_day" style="border: 1px solid black" class="btn">Узнать количество дней</h3>
+        </div>
 </div>
 
 
-<div class="form-group" id="lenght" style="display:none">
-<div class="col-md-2"></div>
-    <div class="col-sm-10 col-md-5">
-    {!! Form::label('lenght1', '2 месяца', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::checkBox('lenght2','', false, array('class'=>' little-size')) !!}
-
-    </div>
-    <div class="col-sm-10 col-md-5">
-    {!! Form::label('lenght2', 'Весь период', array('class'=>'col-sm-2 control-label')) !!}
-        {!! Form::checkBox('lenght2','', false, array('class'=>' little-size')) !!}
-
-    </div>
 
 
-</div>
 
 
 <div class="form-group" id="data_output" style="display:none">
