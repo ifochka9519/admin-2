@@ -41,15 +41,15 @@ class OrdersController extends Controller
 
 
         if(Auth::user()->role_id == 4){
-            $orders = Auth::user()->orders->where('status_id','!=', 1);
+            $orders = Auth::user()->orders->where('status_id','!=', 1)->where('status_id','!=', 6);
             $words = LanguageController::orders('pl');
 
         }elseif(Auth::user()->role_id == 3){
-            $orders = Orders::where('manager_id', Auth::user()->id)->get();
+            $orders = Orders::where('manager_id', Auth::user()->id)->where('status_id','!=', 6)->get();
             $words = LanguageController::orders('ru');
 
         }else{
-            $orders = Orders::all();
+            $orders = Orders::all()->where('status_id','!=', 6);
             $words = LanguageController::orders('ru');
         }
 
@@ -83,7 +83,7 @@ class OrdersController extends Controller
         $this->validate($request, [
             'payment' => 'integer',
             'prepayment' => 'integer',
-            'client_id' => 'required|unique:orders'
+            'client_id' => 'required'
         ]);
 
         $history = new History();

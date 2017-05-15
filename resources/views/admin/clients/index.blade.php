@@ -36,6 +36,9 @@
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.clients.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
+                                @if(app()->getLocale() != 'pl')
+                                    <a class="btn btn-xs btn-success" href="{{route('history_for_client', $row->id)}}">История</a>
+                                @endif
                                 {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.clients.destroy', $row->id))) !!}
                                 {!! Form::submit(trans('quickadmin::templates.templates-view_index-delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                 {!! Form::close() !!}

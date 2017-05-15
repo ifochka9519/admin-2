@@ -324,6 +324,35 @@ $('#plus-fa').on('click',function () {
         }
     })
 
+    $('#parent_m').on('keyup',function () {
+        var regexp = /^[A-Z]{2,}$/;
+        var input = this.value;
+        if (input.search(regexp) === -1) {
 
+            $(this).addClass('input-error');
+            $(this).parent().find(".input-error-msg").show().html('Введите данные в виде OLGA');
+        }
+        else{
+            $(this).removeClass('input-error');
+            $(this).parent().find(".input-error-msg").hide().html();
+        }
+        console.log(input);
+        console.log(input.search(regexp));
+    })
+    $('#parent_f').on('keyup',function () {
+        var regexp = /^[A-Z]{2,}$/;
+        var input = this.value;
+        if (input.search(regexp) === -1) {
+
+            $(this).addClass('input-error');
+            $(this).parent().find(".input-error-msg").show().html('Введите данные в виде IVAN');
+        }
+        else{
+            $(this).removeClass('input-error');
+            $(this).parent().find(".input-error-msg").hide().html();
+        }
+        console.log(input);
+        console.log(input.search(regexp));
+    })
 
 })

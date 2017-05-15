@@ -7,6 +7,7 @@ use App\Cities;
 use App\Customers;
 use App\Districts;
 use App\Http\Controllers\Controller;
+use App\Orders;
 use App\Regions;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -191,6 +192,15 @@ class ClientsController extends Controller {
         }
 
         return redirect()->route(config('quickadmin.route').'.clients.index');
+    }
+
+    public function history($id)
+    {
+        $client = Clients::find($id);
+        $order = Orders::where('status_id','!=',6)->where('client_id',$id)->first();
+        $orders = Orders::all()->where('status_id',6)->where('client_id',$id);
+
+        return view('admin.clients.history')->with(['client'=> $client,'current_order'=>$order,'orders'=>$orders]);
     }
 
 }

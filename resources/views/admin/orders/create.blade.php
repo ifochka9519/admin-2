@@ -53,7 +53,8 @@
 <div class="form-group" id="parent1" style="display:none">
     {!! Form::label('parent1', 'Мать', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::text('parent1', '',  array('class'=>'form-control')) !!}
+        {!! Form::text('parent1', '',  array('class'=>'form-control' , 'id'=>'parent_m')) !!}
+        <span class="input-error-msg"></span>
 
     </div>
 </div>
@@ -61,7 +62,8 @@
 <div class="form-group" id="parent2" style="display:none">
     {!! Form::label('parent2', 'Отец', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::text('parent2', '',  array('class'=>'form-control')) !!}
+        {!! Form::text('parent2', '',  array('class'=>'form-control', 'id'=>'parent_f')) !!}
+        <span class="input-error-msg"></span>
 
     </div>
 </div>
