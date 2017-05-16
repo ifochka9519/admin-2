@@ -29,7 +29,7 @@
 <div class="form-group">
     <lable for="status_id" class="col-sm-2 control-label">{{ trans("language.orders_edit.status") }}</lable>
     <div class="col-sm-10">
-        {!! Form::select('status_id', $statuses, old('status_id'), array('class'=>'form-control')) !!}
+        {!! Form::select('status_id', $statuses, old('status_id'), array('class'=>'form-control statuses_finish', 'order'=>$orders->id)) !!}
 
     </div>
 </div>
@@ -83,5 +83,9 @@
 </div>
 
 {!! Form::close() !!}
+<script>
+    var urlReason = '{{route('addNewReason')}}';
+    var token = '{{Session::token()}}';
+</script>
 
 @endsection

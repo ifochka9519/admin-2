@@ -28,6 +28,7 @@ Route::post('/admin/addNewDistrict', 'Admin\DistrictsController@addNewDistrict')
 Route::post('/admin/makeListCities', 'Admin\CitiesController@makeList')->name('makeListCities');
 Route::post('/admin/addNewCity', 'Admin\CitiesController@addNewCity')->name('addNewCity');
 Route::post('/admin/addNewAddress', 'Admin\AddressesController@addNewAddress')->name('addNewAddress');
+Route::post('/admin/addNewReason', 'ReasonController@addNewReason')->name('addNewReason');
 //Route::get('/pdf', 'Admin\OrdersController@makePDF')->name('makePDF');
 Route::get('/admin/orderHistory/{id}', 'Admin\OrdersController@history')->name('history');
 Route::get('/admin/clientHistory/{id}', 'Admin\ClientsController@history')->name('history_for_client');

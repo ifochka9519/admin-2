@@ -355,4 +355,31 @@ $('#plus-fa').on('click',function () {
         console.log(input.search(regexp));
     })
 
+
+
+    $('.statuses_finish').on('click',function () {
+        var options = $(this).context.selectedOptions;
+        var status_id = options[0].value;
+        var order = $(this).attr('order');
+        if(status_id == 8){
+            var reasone = window.prompt("Введите причину завершения заявки","Заявка завершена по причине ");
+            if (reasone == null || reasone == "") {
+                $(this).context.selectedIndex = 0;
+            }
+            else{
+                $.ajax({
+                    method: 'POST',
+                    url: urlReason,
+                    data:{
+                        order: order,
+                        text: reasone,
+                        _token: token
+                    }
+                })
+
+                //console.log($(this).attr('order'))
+            }
+        }
+    })
+
 })

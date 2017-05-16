@@ -153,6 +153,7 @@
     var urlC = '{{route('makeListCities')}}';
     var urlCN = '{{route('addNewCity')}}';
     var urlNA = '{{route('addNewAddress')}}';
+
     var token = '{{Session::token()}}';
     var availableTags = [];
 

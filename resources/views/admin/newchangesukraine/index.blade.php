@@ -41,18 +41,18 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="row">
+                {{--<div class="row">
                     <div class="col-xs-12">
                         <form action="{{route('mee')}}" method="post">
                             <button type="submit" class="btn btn-danger" id="delete">
                                 SEE IT
                             </button>
 
-                            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                            <input type="hidden" name="_token" value="">
 
                         </form>
                     </div>
-                </div>
+                </div>--}}
 
             </div>
         </div>
