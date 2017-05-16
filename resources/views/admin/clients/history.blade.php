@@ -10,7 +10,7 @@
     <h1>{{$client->name}}</h1>
     <h1>{{$client->user->name}}</h1>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5">
         <details>
             <summary style="font-size: 24px">Current order</summary>
 
@@ -47,7 +47,10 @@
         </details>
     </div>
 
-    <div class="col-md-6">
+
+    <div class="col-md-1"></div>
+
+    <div class="col-md-5">
         <details>
             <summary style="font-size: 24px">Archive</summary>
             @if ($orders->count())

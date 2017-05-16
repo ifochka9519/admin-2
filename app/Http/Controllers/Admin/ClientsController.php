@@ -119,7 +119,16 @@ class ClientsController extends Controller
         $region = Regions::where('id', $district->regions_id)->first();
 
 
-        return view('admin.clients.edit', compact('clients'))->with(['regions' => $regions, 'city' => $city, 'district' => $district, 'region' => $region]);
+        $order = Orders::where('status_id', '!=', 8)->where('client_id', $id)->first();
+        if ($order != null){
+            $flag = false;
+        }
+        else
+            $flag = true;
+
+
+
+        return view('admin.clients.edit', compact('clients'))->with(['regions' => $regions, 'city' => $city, 'district' => $district, 'region' => $region, 'flag' => $flag]);
     }
 
     /**

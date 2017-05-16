@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="row">
     <div class="col-sm-10 col-sm-offset-2">
         <h1>{{ trans('quickadmin::templates.templates-view_edit-edit') }}</h1>
@@ -21,28 +22,13 @@
 <div class="form-group">
     {!! Form::label('name', 'Имя', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::text('name', old('name',$clients->name), array('class'=>'form-control')) !!}
+        {!! Form::text('name', old('name',$clients->name), array('class'=>'form-control', 'id'=>'name')) !!}
         
     </div>
 </div>
 
 
 
-{{--<div class="form-group">
-    {!! Form::label('payment', 'Оплата', array('class'=>'col-sm-2 control-label')) !!}
-    <div class="col-sm-10">
-        {!! Form::text('payment', old('payment',$clients->payment), array('class'=>'form-control')) !!}
-
-    </div>
-</div>
-
-<div class="form-group">
-    {!! Form::label('prepayment', 'Предоплата', array('class'=>'col-sm-2 control-label')) !!}
-    <div class="col-sm-10">
-        {!! Form::text('prepayment', old('prepayment',$clients->prepayment), array('class'=>'form-control')) !!}
-
-    </div>
-</div>--}}
 
 <div class="form-group">
     {!! Form::label('passport', 'Номер паспорта', array('class'=>'col-sm-2 control-label')) !!}
@@ -52,16 +38,7 @@
     </div>
 </div>
 
-{{--
-<div class="form-group">
-    {!! Form::label('scan_passport_path', 'Скан паспорта', array('class'=>'col-sm-2 control-label')) !!}
-    <div class="col-sm-10">
-        <img width="100px" src="{{$clients->scan_passport_path}}" alt="">
-        {!! Form::file('scan_passport_path', old('scan_passport_path',$clients->scan_passport_path), array('class'=>'form-control')) !!}
 
-    </div>
-</div>
---}}
 
 <div class="form-group">
     {!! Form::label('data_of_birthday', 'Дата рождения', array('class'=>'col-sm-2 control-label')) !!}
@@ -125,7 +102,7 @@
 
         {!! Form::text('address_id', old('address_id',$region->name .','.$district->name .','.$city->name.','.$clients->address->address), array('class'=>'form-control','id'=>'address_id', 'readonly')) !!}
 
-        <i class="edit-icon fa fa-pencil fa-3x" aria-hidden="true"></i>
+        <i id="pen" class="edit-icon fa fa-pencil fa-3x"  aria-hidden="true"></i>
     </div>
 </div>
 <div class="form-group">
@@ -147,5 +124,20 @@
 
 
 </script>
+
+@if(!$flag)
+    <script>
+
+        document.getElementsByName('name')[0].readOnly = true;
+        document.getElementsByName('passport')[0].readOnly = true;
+        document.getElementsByName('data_of_birthday')[0].readOnly = true;
+        document.getElementsByName('phone')[0].readOnly = true;
+        document.getElementsByName('email')[0].readOnly = true;
+        document.getElementById('pen').style.display = 'none';
+
+        //  var x = document.getElementsById('name').readOnly = true;
+
+    </script>
+@endif
 
 @endsection

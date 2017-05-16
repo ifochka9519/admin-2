@@ -15,8 +15,8 @@
                             {!! Form::checkbox('delete_all',1,false,['class' => 'mass']) !!}
                         </th>
                         <th>№ ЗАЯВКИ</th>
-                        <th>Текущий статус</th>
-                        <th>Предыдущий статус</th>
+                        <th>Клиент</th>
+                        <th>Изменение статуса</th>
                         <th>Время изменения</th>
 
 
@@ -28,12 +28,11 @@
 
                       <tr>
 
-                            <td>
-                                {!! Form::checkbox('del-'.$rows->id,1,false,['class' => 'single','data-id'=> $rows->id]) !!}
-                            </td>
+
                             <td>{{ $rows->order_id }}</td>
-                            <td>{{ $rows->status_current }}</td>
-                            <td>{{ $rows->status_old }}</td>
+                            <td>{{ $rows->order->client->name }}</td>
+                          <td><span style="color: {{\App\Statuses::where('name',$rows->status_current)->first()->color}};">{{ $rows->status_current }}</span><span style="color:red;"> => </span> <span style="color: {{\App\Statuses::where('name',$rows->status_old)->first()->color}};">{{ $rows->status_old }}</span> </td>
+                            {{--<td style="color: {{\App\Statuses::where('name',$rows->status_old)->first()->color}}">{{ $rows->status_old }}</td>--}}
                             <td>{{ $rows->created_at }}</td>
 
                         </tr>
