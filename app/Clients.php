@@ -51,4 +51,9 @@ class Clients extends Model {
     {
         return $this->belongsTo(Addresses::class);
     }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
 }

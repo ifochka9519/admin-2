@@ -28,7 +28,7 @@
     </div>
 </div>
 
-<div class="form-group">
+{{--<div class="form-group">
     {!! Form::label('payment', 'Оплата', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10 {{ $errors->has('payment') ? ' has-error' : '' }}">
         {!! Form::text('payment', '0', array('class'=>'form-control')) !!}
@@ -42,7 +42,7 @@
         {!! Form::text('prepayment', '0', array('class'=>'form-control')) !!}
 
     </div>
-</div>
+</div>--}}
 
 <div class="form-group">
     {!! Form::label('passport', 'Номер паспорта', array('class'=>'col-sm-2 control-label', ' enctype'=>"multipart/form-data")) !!}
@@ -52,15 +52,8 @@
     </div>
 </div>
 
-<div class="form-group">
-    {!! Form::label('scan_passport_path', 'Скан паспорта', array('class'=>'col-sm-2 control-label')) !!}
-    <div class="col-sm-10">
-        {!! Form::file('scan_passport_path') !!}
 
-    </div>
-</div>
-
-<div class="form-group">
+<div class="form-group" id="img1">
     {!! Form::label('data_of_birthday', 'Дата рождения', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10 ">
         {!! Form::date('data_of_birthday', old('data_of_birthday'), array('class'=>'form-control')) !!}
@@ -135,6 +128,59 @@
         <span class="input-error-msg"></span>
     </div>
 
+</div>
+
+<div class="form-group" id="img1">
+    {!! Form::label('scan_passport_path1', 'Скан паспорта', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        <input id="scan_passport_path1" name="scan_passport_path1" type="file" class="file" data-show-preview="true">
+        <img width="100px" id="scan_passport_img1" src="" alt="">
+
+    </div>
+</div>
+<div class="form-group" id="img2" hidden>
+    {!! Form::label('scan_passport_path2', 'Скан паспорта', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        <input id="scan_passport_path2" name="scan_passport_path2" type="file" class="file" data-show-preview="true">
+        <img width="100px" id="scan_passport_img2" src="" alt="">
+
+
+    </div>
+</div>
+
+<div class="form-group" id="img3" hidden>
+    {!! Form::label('scan_passport_path3', 'Скан паспорта', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        <input id="scan_passport_path3" name="scan_passport_path3" type="file" class="file" data-show-preview="true">
+        <img width="100px" id="scan_passport_img3" src="" alt="">
+
+    </div>
+</div>
+
+<div class="form-group" id="img4" hidden>
+    {!! Form::label('scan_passport_path4', 'Скан паспорта', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        <input id="scan_passport_path4" name="scan_passport_path4" type="file" class="file" data-show-preview="true">
+        <img width="100px" id="scan_passport_img4" src="" alt="">
+
+    </div>
+</div>
+
+<div class="form-group" id="img5" hidden>
+    {!! Form::label('scan_passport_path5', 'Скан паспорта', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        <input id="scan_passport_path5" name="scan_passport_path5" type="file" class="file" data-show-preview="true">
+        <img width="100px" id="scan_passport_img5" src="" alt="">
+
+    </div>
+</div>
+
+<div class="form-group" >
+    {!! Form::label('', 'Добавить еще скан', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        <i class="fa fa-plus" id="img" aria-hidden="true"></i>
+
+    </div>
 </div>
 
 

@@ -1,6 +1,7 @@
 $(function () {
     'use strict';
     var i = 0;
+    var j = 1;
 
 
     $('.regions').on('click', function () {
@@ -381,5 +382,72 @@ $('#plus-fa').on('click',function () {
             }
         }
     })
+
+
+    $('#img').on('click',function () {
+        j++;
+        $('#img'+j).css('display','block');
+    })
+
+
+    document.getElementById("scan_passport_path1").onchange = function () {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("scan_passport_img1").src = e.target.result;
+        };
+
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    };
+
+    document.getElementById("scan_passport_path2").onchange = function () {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("scan_passport_img2").src = e.target.result;
+        };
+
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    };
+
+    document.getElementById("scan_passport_path3").onchange = function () {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("scan_passport_img3").src = e.target.result;
+        };
+
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    };
+
+    document.getElementById("scan_passport_path4").onchange = function () {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("scan_passport_img4").src = e.target.result;
+        };
+
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    };
+
+    document.getElementById("scan_passport_path5").onchange = function () {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("scan_passport_img5").src = e.target.result;
+        };
+
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    };
 
 })

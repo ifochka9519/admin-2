@@ -232,6 +232,7 @@
 </div>
 
 
+{{--
 <div class="form-group" id="payment" style="display:none">
     {!! Form::label('payment', 'Оплата', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10 {{ $errors->has('payment') ? ' has-error' : '' }}">
@@ -247,6 +248,7 @@
 
     </div>
 </div>
+--}}
 
 
 <div class="form-group" id="scan" style="display:none">

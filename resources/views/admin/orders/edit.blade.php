@@ -50,6 +50,7 @@
     </div>
 </div>
 
+{{--
 <div class="form-group">
     <lable for="payment" class="col-sm-2 control-label">{{ trans("language.orders_edit.payment") }}</lable>
     <div class="col-sm-10">
@@ -65,6 +66,7 @@
 
     </div>
 </div>
+--}}
 
 <div class="form-group">
     <lable for="scan_order_path" class="col-sm-2 control-label">{{ trans("language.orders_edit.scan") }}</lable>
