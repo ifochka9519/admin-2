@@ -133,8 +133,9 @@ class OrdersController extends Controller
         $history->status_current = $status->name;
         $history->status($status);
         $history->order($order);
-        $history->user_id = Auth::user()->id;
+        $history->user_id = $request['user_id'];
         $history->user_name = Auth::user()->name;
+        $history->manager_id = $client->user_id;
         $history->save();
         $news->poland_id = $user->id;
         $news->manager_id = $client->user_id;
@@ -256,8 +257,9 @@ class OrdersController extends Controller
             $history->status_current = $status->name;
             $history->status($status);
             $history->order($orders);
-            $history->user_id = Auth::user()->id;
+            $history->user_id = $orders->user_id;
             $history->user_name = Auth::user()->name;
+            $history->manager_id = $orders->client->user_id;
             $history->save();
             $news->manager_id = $orders->client->user_id;
             $news->history_id = $history->id;

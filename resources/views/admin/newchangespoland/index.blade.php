@@ -23,12 +23,12 @@
 
                     <tbody>
                     @foreach ($news as $rows)
-                        @if($rows->history->status_id !='1')
+                        @if($rows->status_id !='1')
                         <tr>
 
-                            <td>{{ $rows->history->order_id }}</td>
-                            <td>{{ $rows->history->status_current }}</td>
-                            <td>{{ $rows->history->status_old }}</td>
+                            <td>{{ $rows->order_id }}</td>
+                            <td>{{ $rows->status_current }}</td>
+                            <td>{{ $rows->status_old }}</td>
                             <td>{{ $rows->created_at }}</td>
 
                         </tr>
@@ -37,7 +37,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="row">
+               <div class="row">
                     <div class="col-xs-12">
                         <form action="{{route('sees')}}" method="post">
                         <button type="submit" class="btn btn-danger" id="delete">
@@ -55,5 +55,5 @@
     @else
         {{ trans('quickadmin::templates.templates-view_index-no_entries_found') }}
     @endif
-    <i  class="fa fa-eye" aria-hidden="true"></i>
+
 @endsection

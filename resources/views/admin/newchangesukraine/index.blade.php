@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @if ($news->count())
+    @if (count($news) != 0)
         <div class="portlet box green">
             <div class="portlet-title">
                 <div class="caption">{{ trans('quickadmin::templates.templates-view_index-list') }}</div>
@@ -25,14 +25,15 @@
 
                     <tbody>
                     @foreach ($news as $rows)
-                        <tr>
+
+                      <tr>
 
                             <td>
                                 {!! Form::checkbox('del-'.$rows->id,1,false,['class' => 'single','data-id'=> $rows->id]) !!}
                             </td>
-                            <td>{{ $rows->history->order_id }}</td>
-                            <td>{{ $rows->history->status_current }}</td>
-                            <td>{{ $rows->history->status_old }}</td>
+                            <td>{{ $rows->order_id }}</td>
+                            <td>{{ $rows->status_current }}</td>
+                            <td>{{ $rows->status_old }}</td>
                             <td>{{ $rows->created_at }}</td>
 
                         </tr>

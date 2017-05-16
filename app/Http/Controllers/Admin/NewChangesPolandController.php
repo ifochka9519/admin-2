@@ -8,6 +8,7 @@ use App\Http\Controllers\LanguageController;
 use App\News;
 use App\Statuses;
 use App\User;
+use FontLib\TrueType\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class NewChangesPolandController extends Controller
@@ -23,12 +24,20 @@ class NewChangesPolandController extends Controller
 
     public function index()
     {
+
         $user = Auth::user();
-        $news = [];
-        $words=[];
+        $news = new Collection(History::class);
+        $histories = History::where('see_it',0)->where('user_id',$user->id)->get()->sortByDesc('created_at');
+        $news = clone $histories;
+        if ($histories != []){
+            foreach ($histories as $item){
+                $item->see_it = 1;
+                $item->save();
+            }
+        }
+
         if ($user->role_id == 4) {
             $words = LanguageController::news('pl');
-            $news = News::all()->where('poland_id', $user->id)->sortByDesc('created_at');
         }
 
 
