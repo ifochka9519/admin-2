@@ -45,33 +45,5 @@ class NewChangesPolandController extends Controller
 
     }
 
-    public function see()
-    {
-        $user = Auth::user();
-        $news = News::all();
-        foreach ($news as $new1){
-            if($new1->poland_id == $user->id){
-                $history = new History();
-                $new = new News();
-                $order = $new1->history->order;
-                $history->order_id = $order->id;
-                $history->status_old = $order->status->name;
-                $history->status_id = 3;
-                $order->status_id = 3;
-                $order->save();
-                $history->status_current = Statuses::find('3')->name;
-                $history->status(Statuses::find('3'));
-                $history->order($order);
-                $history->save();
-                $new->poland_id = 0;
-                $new->manager_id = $order->client->user_id;
-                $new->history_id = $history->id;
-                $new->user(User::find($order->client->user_id));
-                $new->history($history);
-                $new->save();
-                $new1->delete();
-            }
-        }
-        return redirect('/admin');
-    }
+
 }

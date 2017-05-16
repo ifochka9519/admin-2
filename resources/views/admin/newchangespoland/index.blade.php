@@ -23,7 +23,7 @@
 
                     <tbody>
                     @foreach ($news as $rows)
-                        @if($rows->status_id !='1')
+                        @if($rows->status_id !='8')
                         <tr>
 
                             <td>{{ $rows->order_id }}</td>

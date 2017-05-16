@@ -41,15 +41,15 @@ class OrdersController extends Controller
 
 
         if(Auth::user()->role_id == 4){
-            $orders = Auth::user()->orders->where('status_id','!=', 1)->where('status_id','!=', 6);
+            $orders = Auth::user()->orders->where('status_id','!=', 8);
             $words = LanguageController::orders('pl');
 
         }elseif(Auth::user()->role_id == 3){
-            $orders = Orders::where('manager_id', Auth::user()->id)->where('status_id','!=', 6)->get();
+            $orders = Orders::where('manager_id', Auth::user()->id)->where('status_id','!=', 8)->get();
             $words = LanguageController::orders('ru');
 
         }else{
-            $orders = Orders::all()->where('status_id','!=', 6);
+            $orders = Orders::all()->where('status_id','!=', 8);
             $words = LanguageController::orders('ru');
         }
 
@@ -83,7 +83,7 @@ class OrdersController extends Controller
         $this->validate($request, [
             'payment' => 'integer',
             'prepayment' => 'integer',
-            'client_id' => 'required|unique:orders,client_id,NULL,id,status_id,2,status_id,3,status_id,4'
+            'client_id' => 'required|unique:orders,client_id,NULL,id,status_id,1,status_id,2,status_id,3,status_id,4,status_id,5,status_id,6,status_id,7'
         ]);
 
         $history = new History();
@@ -142,11 +142,11 @@ class OrdersController extends Controller
         $news->history_id = $history->id;
         $news->user(User::find($client->user_id));
         $news->history($history);
-        if($request['status_id'] == 2){
+        if($request['status_id'] == 1){
             MailController::sendEmail($order->pdf);
 
         }
-        if($request['status_id'] != 1){
+        if($request['status_id'] != 6){
             $news->poland_id = $request['user_id'];
         }
         $news->save();
@@ -244,7 +244,7 @@ class OrdersController extends Controller
             }*/
 
 
-            if($request['status_id'] != 1){
+            if($request['status_id'] != 8){
                 $news->poland_id = $request['user_id'];
             }
 

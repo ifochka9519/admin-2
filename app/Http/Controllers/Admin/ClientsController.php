@@ -198,8 +198,8 @@ class ClientsController extends Controller {
     public function history($id)
     {
         $client = Clients::find($id);
-        $order = Orders::where('status_id','!=',6)->where('status_id','!=',5)->where('client_id',$id)->first();
-        $orders = Orders::all()->where('status_id',6)->where('client_id',$id);
+        $order = Orders::where('status_id','!=',8)->where('client_id',$id)->first();
+        $orders = Orders::all()->where('status_id',8)->where('client_id',$id);
         if($order!=null)
         $histories = History::where('order_id', $order->id)->get();
         else
