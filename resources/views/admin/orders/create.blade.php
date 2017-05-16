@@ -29,7 +29,7 @@
 <div class="form-group" id="status" style="display:none">
     {!! Form::label('status_id', 'Статус', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::select('status_id', $statuses, old('status_id'), array('class'=>'form-control statuses_finish', 'order'=>$orders->id)) !!}
+        {!! Form::select('status_id', $statuses, old('status_id'), array('class'=>'form-control statuses_finish')) !!}
 
     </div>
 </div>

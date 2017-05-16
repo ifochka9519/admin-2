@@ -9,42 +9,77 @@
 
     <h1>{{$client->name}}</h1>
     <h1>{{$client->user->name}}</h1>
+<div class="row">
+    <div class="col-md-6">
+        <details>
+            <summary style="font-size: 24px">Current order</summary>
 
-   <details>
-       <summary>Current order</summary>
+            @if (count($histories)!=null)
 
-       @if ($histories->count())
+                <table class="table table-striped table-hover table-responsive datatable" id="datatable">
+                    <thead>
+                    <tr>
+                        <th>Номер заявки</th>
+                        <th>Текущий статус</th>
+                        <th>Предыдущий статус</th>
+                        <th>Время изменения</th>
+                        <th>Кто измененил</th>
 
-               <table class="table table-striped table-hover table-responsive datatable" id="datatable">
-                   <thead>
-                   <tr>
-                       <th>Номер заявки</th>
-                       <th>Текущий статус</th>
-                       <th>Предыдущий статус</th>
-                       <th>Время изменения</th>
-                       <th>Кто измененил</th>
+                    </tr>
+                    </thead>
 
-                   </tr>
-                   </thead>
+                    <tbody>
+                    @foreach ($histories as $row)
+                        <tr>
 
-                   <tbody>
-                   @foreach ($histories as $row)
-                       <tr>
+                            <td>{{ $row->order_id }}</td>
+                            <td style="color: {{\App\Statuses::where('name',$row->status_current)->first()->color}}">{{ $row->status_current }}</td>
+                            <td style="color: {{\App\Statuses::where('name',$row->status_old)->first()->color}}">{{ $row->status_old }}</td>
+                            <td>{{ $row->created_at }}</td>
+                            <td>{{ $row->user_name }}</td>
 
-                           <td>{{ $row->order_id }}</td>
-                           <td>{{ $row->status_current }}</td>
-                           <td>{{ $row->status_old }}</td>
-                           <td>{{ $row->created_at }}</td>
-                           <td>{{ $row->user_name }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @endif
 
-                       </tr>
-                   @endforeach
-                   </tbody>
-               </table>
-           @endif
+        </details>
+    </div>
 
-   </details>
+    <div class="col-md-6">
+        <details>
+            <summary style="font-size: 24px">Archive</summary>
+            @if ($orders->count())
+                <table class="table table-striped table-hover table-responsive datatable" id="datatable">
+                    <thead>
+                    <tr>
+                        <th>Номер заявки</th>
+                        <th>Текущий статус</th>
+                        <th>Причина</th>
+                        <th>Время завершения</th>
 
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach ($orders as $row)
+                        <tr>
+
+                            <td>{{ $row->id }}</td>
+                            <td style="color:{{ $row->status->color }}">{{ $row->status->name }}</td>
+                            <td>{{ \App\Reason::where('order_id',$row->id)->first()->text }}</td>
+                            <td>{{ \App\Reason::where('order_id',$row->id)->first()->created_at }}</td>
+
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                @endif
+        </details>
+    </div>
+
+</div>
    {{-- @if ($histories->count())
         <div class="portlet box green">
             <div class="portlet-title">
