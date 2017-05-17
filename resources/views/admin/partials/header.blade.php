@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        {{ trans('quickadmin::admin.partials-header-title') }}
+        PROSPERIS
     </title>
 
     <meta http-equiv="X-UA-Compatible"

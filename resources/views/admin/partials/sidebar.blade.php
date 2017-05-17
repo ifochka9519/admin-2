@@ -4,7 +4,7 @@
             data-keep-expanded="false"
             data-auto-scroll="true"
             data-slide-speed="200">
-            @if(Auth::user()->role_id == config('quickadmin.defaultRole'))
+            {{--@if(Auth::user()->role_id == config('quickadmin.defaultRole'))
                 <li @if(Request::path() == config('quickadmin.route').'/menu') class="active" @endif>
                     <a href="{{ url(config('quickadmin.route').'/menu') }}">
                         <i class="fa fa-list"></i>
@@ -29,7 +29,7 @@
                         <span class="title">{{ trans('quickadmin::admin.partials-sidebar-user-actions') }}</span>
                     </a>
                 </li>
-            @endif
+            @endif--}}
             @foreach($menus as $menu)
                 @if($menu->menu_type != 2 && is_null($menu->parent_id))
                     @if(Auth::user()->role->canAccessMenu($menu))
@@ -71,7 +71,7 @@
                 {!! Form::open(['url' => 'logout']) !!}
                 <button type="submit" class="logout">
                     <i class="fa fa-sign-out fa-fw"></i>
-                    <span class="title">{{ trans('quickadmin::admin.partials-sidebar-logout') }}</span>
+                    <span class="title">Выход</span>
                 </button>
                 {!! Form::close() !!}
             </li>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {{ trans('quickadmin::admin.dashboard-title') }}
+    <h2>PROSPERIS</h2>
     <script>
         var timerId2 = setTimeout(function () {
             $.ajax({
