@@ -133,7 +133,7 @@ class OrdersController extends Controller
 
         $order->save();
         $history->status_id = $request['status_id'];
-        $history->status_old = 'новая';
+        $history->status_old = '';
         $history->order_id = $order->id;
         $history->status_current = $status->name;
         $history->status($status);
