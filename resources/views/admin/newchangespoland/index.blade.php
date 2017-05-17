@@ -29,7 +29,7 @@
 
                             <td>{{ $rows->order_id }}</td>
                             <td>{{ $rows->order->client->name }}</td>
-                            <td><span style="color: {{\App\Statuses::where('name',$rows->status_current)->first()->color}};">{{ $rows->status_current }}</span><span style="color:red;"> => </span> <span style="color: {{\App\Statuses::where('name',$rows->status_old)->first()->color}};">{{ $rows->status_old }}</span> </td>
+                            <td><span style="color: {{\App\Statuses::where('name',$rows->status_old)->first()->color}};">{{ $rows->status_old }}</span><span style="color:red;"> => </span> <span style="color: {{\App\Statuses::where('name',$rows->status_curent)->first()->color}};">{{ $rows->status_current }}</span> </td>
                             {{--<td style="color: {{\App\Statuses::where('name',$rows->status_old)->first()->color}}">{{ $rows->status_old }}</td>--}}
                             <td>{{ $rows->created_at }}</td>
 

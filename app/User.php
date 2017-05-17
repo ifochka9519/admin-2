@@ -70,4 +70,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(News::class);
     }
+
+    public function reminders()
+    {
+        return $this->hasMany(Reminder::class);
+    }
 }

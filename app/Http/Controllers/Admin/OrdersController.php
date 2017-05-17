@@ -80,6 +80,7 @@ class OrdersController extends Controller
      */
     public function store(CreateOrdersRequest $request)
     {
+
         $this->validate($request, [
             'payment' => 'integer',
             'prepayment' => 'integer',
@@ -89,6 +90,10 @@ class OrdersController extends Controller
         $history = new History();
         $order = new Orders();
         $news = new News();
+
+        if($request['status_id'] == 1){
+            MailController::sendEmail();
+        }
 
         $order->parent_1 = $request['parent_1'];
         $order->parent_2 = $request['parent_2'];
@@ -238,15 +243,14 @@ class OrdersController extends Controller
         $news = new News();
         $orders = Orders::findOrFail($id);
         if ($orders->status_id != $request['status_id']) {
-           /* if($request['status_id'] == 2){
-                MailController::sendEmail($orders->pdf);
-
-            }*/
-
-
-            if($request['status_id'] != 8){
-                $news->poland_id = $request['user_id'];
+            if($request['status_id'] == 1){
+                MailController::sendEmail();
             }
+
+
+         /*   if($request['status_id'] != 8){
+                $news->poland_id = $request['user_id'];
+            }*/
 
 
             $status = Statuses::find($request['status_id']);
@@ -261,11 +265,11 @@ class OrdersController extends Controller
             $history->user_name = Auth::user()->name;
             $history->manager_id = $orders->client->user_id;
             $history->save();
-            $news->manager_id = $orders->client->user_id;
+           /* $news->manager_id = $orders->client->user_id;
             $news->history_id = $history->id;
             $news->user(User::find($orders->client->user_id));
             $news->history($history);
-            $news->save();
+            $news->save();*/
             MailController::updateStatus($history->order_id ,$history->status_old, $history->status_current, $history->created_at);
         }
 
