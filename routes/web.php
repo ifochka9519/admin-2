@@ -37,6 +37,7 @@ Route::get('/admin/clientHistory/{id}', 'Admin\ClientsController@history')->name
 Route::post('/mee', 'Admin\NewChangesUkraineController@see')->name('mee');*/
 
 Route::post('/admin/Timer2', 'Admin\OrdersController@timer')->name('timer2');
+Route::post('/admin/Timer3', 'Admin\OrdersController@timer3')->name('timer3');
 Route::post('/admin/Timer', 'Admin\NewChangesPolandController@timer')->name('timer');
 
 /*

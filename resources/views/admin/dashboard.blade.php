@@ -17,7 +17,28 @@
                     if (s.length == 0) {
                     }
                     else {
-                        alert('Клиент по которому истекает срок: '+s);
+                        alert('Клиенты по которым скоро анулируется приглашение: '+s);
+                    }
+                })
+        }, 1000);
+
+
+
+
+        var timerId3 = setTimeout(function () {
+            $.ajax({
+                method: 'POST',
+                url: urlTimer3,
+                data: {
+                    _token: token
+                }
+            })
+                .done(function (s) {
+
+                    if (s.length == 0) {
+                    }
+                    else {
+                        alert('Клиенты которые скоро выежджают: '+s);
                     }
                 })
         }, 1000);

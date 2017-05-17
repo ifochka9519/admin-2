@@ -21,6 +21,7 @@
 
             <script>
                 var urlTimer2 = "{{route('timer2')}}";
+                var urlTimer3 = "{{route('timer3')}}";
                 //var token = '{{Session::token()}}';
             </script>
             </div>

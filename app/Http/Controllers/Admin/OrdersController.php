@@ -348,8 +348,29 @@ class OrdersController extends Controller
                 $date = strtotime($order->created_at);
                 $current_time = Carbon::now();
                 $current_time = strtotime($current_time);
-                if(($current_time - $date)/86400 > 45  ){
-                    $orders2 = $order->client->name;
+                if(($current_time - $date)/86400 > 45 ){
+                    $orders2[] = $order->client->name;
+                }
+
+            }
+        }
+        return $orders2;
+
+
+    }
+
+    public function timer3()
+    {
+        $user = Auth::user();
+        $orders2 = [];
+        if ($user->role_id == 3) {
+            $orders = Orders::where('manager_id', $user->id)->where('data_output','!=', 'NULL')->where('status_id','!=', '8')->get();
+            foreach ($orders as $order){
+                $date = strtotime($order->data_output);
+                $current_time = Carbon::now();
+                $current_time = strtotime($current_time);
+                if(($current_time - $date)/86400 > 2 ){
+                    $orders2[] = $order->client->name;
                 }
 
             }
