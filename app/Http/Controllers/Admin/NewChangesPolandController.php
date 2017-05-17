@@ -46,4 +46,15 @@ class NewChangesPolandController extends Controller
     }
 
 
+    public function timer()
+    {
+        $user = Auth::user();
+        if ($user->role_id == 4)
+        $histories = History::where('see_it',0)->where('user_id',$user->id)->get()->sortByDesc('created_at');
+        if ($user->role_id == 3)
+            $histories = History::where('see_it2',0)->where('manager_id',$user->id)->get()->sortByDesc('created_at');
+        return $histories;
+
+
+    }
 }

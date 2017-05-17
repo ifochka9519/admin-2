@@ -11,7 +11,7 @@
     <h1>{{$client->user->name}}</h1>
 <div class="row">
     <div class="col-md-5">
-        <details>
+        <details open>
             <summary style="font-size: 24px">Current order</summary>
 
             @if (count($histories)!=null)
@@ -51,7 +51,7 @@
     <div class="col-md-1"></div>
 
     <div class="col-md-5">
-        <details>
+        <details open>
             <summary style="font-size: 24px">Archive</summary>
             @if ($orders->count())
                 <table class="table table-striped table-hover table-responsive datatable" id="datatable">

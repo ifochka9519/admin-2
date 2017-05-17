@@ -76,5 +76,34 @@
                 {!! Form::close() !!}
             </li>
         </ul>
+        <script>
+            var timerId = setInterval(function() {
+                $.ajax({
+                    method: 'POST',
+                    url: urlTimer,
+                    data: {
+                        _token: token
+                    }
+                })
+                    .done(function (s) {
+
+                        if(s.length == 0){
+                            var znak = document.getElementsByClassName('fa fa-exclamation-circle')[0];
+                            znak.style.color = "none";
+
+                        }
+                        else{
+                            var znak = document.getElementsByClassName('fa fa-exclamation-circle')[0];
+                            znak.style.color = "red";
+
+                        }
+                    })
+            }, 1000);
+        </script>
+
+        <script>
+            var urlTimer = "{{route('timer')}}";
+            var token = '{{Session::token()}}';
+        </script>
     </div>
 </div>
