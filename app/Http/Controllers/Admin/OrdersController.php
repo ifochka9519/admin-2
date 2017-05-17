@@ -337,4 +337,25 @@ class OrdersController extends Controller
         return view('admin.orders.history')->with('histories', $histories);
     }
 
+
+    public function timer()
+    {
+        $user = Auth::user();
+        $orders2 = [];
+        if ($user->role_id == 3) {
+            $orders = Orders::where('manager_id', $user->id)->where('lenght1', '1')->where('status_id','!=', '8')->get();
+            foreach ($orders as $order){
+                $date = strtotime($order->created_at);
+                $current_time = Carbon::now();
+                $current_time = strtotime($current_time);
+                if(($current_time - $date)/86400 > 45  ){
+                    $orders2 = $order->client->name;
+                }
+
+            }
+        }
+        return $orders2;
+
+
+    }
 }

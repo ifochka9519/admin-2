@@ -15,6 +15,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+//Route::get('/mails', 'MailController@some');
 
 
 //Route::get('{locate}', 'LanguageController@index');
@@ -35,6 +36,7 @@ Route::get('/admin/clientHistory/{id}', 'Admin\ClientsController@history')->name
 /*Route::post('/sees', 'Admin\NewChangesPolandController@see')->name('sees');
 Route::post('/mee', 'Admin\NewChangesUkraineController@see')->name('mee');*/
 
+Route::post('/admin/Timer2', 'Admin\OrdersController@timer')->name('timer2');
 Route::post('/admin/Timer', 'Admin\NewChangesPolandController@timer')->name('timer');
 
 /*

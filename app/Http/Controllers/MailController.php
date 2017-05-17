@@ -32,5 +32,14 @@ class MailController extends Controller
         } );
     }
 
+    public function some()
+    {
+        $data = ['order_id'=>'fff'];
+        Mail::send(['text'=>'mails/client'],$data, function ($message){
+
+            $message->to('shpulka9519@gmail.com', 'Yuliya Berdiy')->subject('Some')->delay('50');
+            $message->from('y.berdiy@gmail.com', 'Yuliya');
+        } );
+    }
 
 }

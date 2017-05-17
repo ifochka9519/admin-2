@@ -17,6 +17,12 @@
                 <a style="float: right; margin-top: 3%;  margin-left: 5%;" href="{{route('pl')}}"> pl </a>
                 <a style="float: right; margin-top: 3%;  margin-left: 5%;" href="{{route('ru')}}"> ru </a>
                 </div>--}}
+
+
+            <script>
+                var urlTimer2 = "{{route('timer2')}}";
+                //var token = '{{Session::token()}}';
+            </script>
             </div>
         </div>
     </div>
