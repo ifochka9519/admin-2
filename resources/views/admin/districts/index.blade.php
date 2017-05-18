@@ -2,20 +2,18 @@
 
 @section('content')
 
-<p>{!! link_to_route(config('quickadmin.route').'.districts.create', trans('quickadmin::templates.templates-view_index-add_new') , null, array('class' => 'btn btn-success')) !!}</p>
+<p>{!! link_to_route(config('quickadmin.route').'.districts.create', 'Добавить новый' , null, array('class' => 'btn btn-success')) !!}</p>
 
 @if ($districts->count())
     <div class="portlet box green">
         <div class="portlet-title">
-            <div class="caption">{{ trans('quickadmin::templates.templates-view_index-list') }}</div>
+            <div class="caption">Список</div>
         </div>
         <div class="portlet-body">
             <table class="table table-striped table-hover table-responsive datatable" id="datatable">
                 <thead>
                     <tr>
-                        <th>
-                            {!! Form::checkbox('delete_all',1,false,['class' => 'mass']) !!}
-                        </th>
+
                         <th>Район</th>
                         <th>Область</th>
 
@@ -26,29 +24,21 @@
                 <tbody>
                     @foreach ($districts as $row)
                         <tr>
-                            <td>
-                                {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
-                            </td>
+
                             <td>{{ $row->name }}</td>
                             <td>{{\App\Regions::where('id',$row->regions_id)->first()->name }}</td>
 
                             <td>
-                                {!! link_to_route(config('quickadmin.route').'.districts.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
+                                {!! link_to_route(config('quickadmin.route').'.districts.edit', 'Редактировать', array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
                                 {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.districts.destroy', $row->id))) !!}
-                                {!! Form::submit(trans('quickadmin::templates.templates-view_index-delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                {!! Form::submit('Удалить', array('class' => 'btn btn-xs btn-danger')) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            <div class="row">
-                <div class="col-xs-12">
-                    <button class="btn btn-danger" id="delete">
-                        {{ trans('quickadmin::templates.templates-view_index-delete_checked') }}
-                    </button>
-                </div>
-            </div>
+
             {!! Form::open(['route' => config('quickadmin.route').'.districts.massDelete', 'method' => 'post', 'id' => 'massDelete']) !!}
                 <input type="hidden" id="send" name="toDelete">
             {!! Form::close() !!}

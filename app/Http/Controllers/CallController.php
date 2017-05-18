@@ -10,8 +10,8 @@ class CallController extends Controller
     public function save(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|text',
-            'telephone' => 'required|number'
+            'name' => 'required',
+            'telephone' => 'required'
         ]);
         $call = new Call();
         $call->name = $request['name'];
@@ -21,7 +21,6 @@ class CallController extends Controller
 
     public function index()
     {
-        $call = Call::all();
-        return $call;
+
     }
 }

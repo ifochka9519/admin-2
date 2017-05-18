@@ -3,7 +3,9 @@
 
 @section('content')
     @if(app()->getLocale() != 'pl')
+{{--
         <p>{!! link_to_route(config('quickadmin.route').'.orders.create', trans('language.orders.add_new') , null, array('class' => 'btn btn-success')) !!}</p>
+--}}
     @endif
     @if ($orders->count())
         <div class="portlet box green">

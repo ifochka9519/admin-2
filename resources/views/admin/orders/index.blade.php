@@ -13,9 +13,7 @@
             <table class="table table-striped table-hover table-responsive datatable" id="datatable">
                 <thead>
                     <tr>
-                        <th>
-                            {!! Form::checkbox('delete_all',1,false,['class' => 'mass']) !!}
-                        </th>
+
                         @if(app()->getLocale() != 'pl')
                         <th>{{$words['pole']}}</th>
                         @endif
@@ -31,9 +29,7 @@
                 <tbody>
                     @foreach ($orders as $row)
                         <tr>
-                            <td>
-                                {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
-                            </td>
+
                             @if(app()->getLocale() != 'pl')
                             <td>{{ $row->user->name }}</td>
                             @endif
@@ -61,13 +57,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="row">
-                <div class="col-xs-12">
-                    <button class="btn btn-danger" id="delete">
-                        {{ trans('language.orders.delete_checked') }}
-                    </button>
-                </div>
-            </div>
+
             {!! Form::open(['route' => config('quickadmin.route').'.orders.massDelete', 'method' => 'post', 'id' => 'massDelete']) !!}
                 <input type="hidden" id="send" name="toDelete">
             {!! Form::close() !!}

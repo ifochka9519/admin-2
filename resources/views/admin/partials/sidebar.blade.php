@@ -4,7 +4,7 @@
             data-keep-expanded="false"
             data-auto-scroll="true"
             data-slide-speed="200">
-            {{--@if(Auth::user()->role_id == config('quickadmin.defaultRole'))
+          {{--  @if(Auth::user()->role_id == config('quickadmin.defaultRole'))
                 <li @if(Request::path() == config('quickadmin.route').'/menu') class="active" @endif>
                     <a href="{{ url(config('quickadmin.route').'/menu') }}">
                         <i class="fa fa-list"></i>
