@@ -74,4 +74,15 @@ class MailController extends Controller
         });
     }
 
+
+    public static function call($name,$telephone)
+    {
+        $data = ['name' => $name, 'telephone' => $telephone];
+        Mail::send(['text' => 'mails/call'], $data, function ($message) {
+
+            $message->to('shpulka9519@gmail.com', 'Yuliya Berdiy')->subject('New Call');
+            $message->from('y.berdiy@gmail.com', 'Yuliya');
+        });
+    }
+
 }

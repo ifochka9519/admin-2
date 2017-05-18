@@ -442,7 +442,7 @@
                     Оставьте Вашу заявку для участия в акции
                 </h3>
                 <form action="">
-                    <input id="telephone_name" name="name" type="text" placeholder="Имя  ">
+                    <input id="name_call" name="name" type="text" placeholder="Имя  ">
                     <input id="telephone_call" name="telephone" type="text" placeholder="Номер телефона">
                 </form>
                 <div class="lang send">

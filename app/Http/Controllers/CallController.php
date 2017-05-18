@@ -17,6 +17,8 @@ class CallController extends Controller
         $call->name = $request['name'];
         $call->telephone = $request['telephone'];
         $call->save();
+
+        MailController::call($call->name, $call->telephone);
     }
 
     public function index()
