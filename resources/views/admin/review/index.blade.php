@@ -15,7 +15,7 @@
                     <tr>
 
                         <th>Автор</th>
-                        <th>Фото</th>
+
                         <th>Описание</th>
 
                         <th>&nbsp;</th>
@@ -27,14 +27,13 @@
                         <tr>
 
                             <td>{{ $row->author }}</td>
-                            <td>@if($row->photo != '')<img src="{{ asset('uploads/thumb') . '/'.  $row->photo }}">@endif
-                            </td>
+
                             <td>{{ $row->alt_photo }}</td>
 
                             <td>
-                                {!! link_to_route(config('quickadmin.route').'.review.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
+                                {!! link_to_route(config('quickadmin.route').'.review.edit', 'Редактировать', array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
                                 {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.review.destroy', $row->id))) !!}
-                                {!! Form::submit(trans('language.orders.delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                {!! Form::submit('Удалить', array('class' => 'btn btn-xs btn-danger')) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>

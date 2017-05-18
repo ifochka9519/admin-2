@@ -20,7 +20,6 @@
                         <th>Номер телефона</th>
                         <th>Дата</th>
 
-                        <th>&nbsp;</th>
                     </tr>
                     </thead>
 
@@ -32,11 +31,11 @@
                             <td>{{ $row->telephone }}</td>
                             <td>{{ $row->created_at }}</td>
 
-                            <td>
+                         {{--   <td>
                                 {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.cities.destroy', $row->id))) !!}
                                 {!! Form::submit('Удалить', array('class' => 'btn btn-xs btn-danger')) !!}
                                 {!! Form::close() !!}
-                            </td>
+                            </td>--}}
                         </tr>
                     @endforeach
                     </tbody>

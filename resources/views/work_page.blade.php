@@ -255,7 +255,7 @@
 </section>
 
 
-<section id="user-data-section" class="container">
+{{--<section id="user-data-section" class="container">
     <h2>
         Скидка 300 ГРИВЕН!
     </h2>
@@ -278,7 +278,7 @@
             </div>
         </div>
     </div>
-</section>
+</section>--}}
 
 
 <section id="footer-section">

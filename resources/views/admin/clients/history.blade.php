@@ -12,11 +12,11 @@
 <div class="row">
     <div class="col-md-5">
         <details open>
-            <summary style="font-size: 24px">Current order</summary>
+            <summary style="font-size: 24px">Текущая заявка</summary>
 
             @if (count($histories)!=null)
 
-                <table class="table table-striped table-hover table-responsive datatable" id="datatable">
+                <table class="table table-hover table-responsive datatable" id="datatable">
                     <thead>
                     <tr>
                         <th>Номер заявки</th>
@@ -52,7 +52,7 @@
 
     <div class="col-md-5">
         <details open>
-            <summary style="font-size: 24px">Archive</summary>
+            <summary style="font-size: 24px">Архив</summary>
             @if ($orders->count())
                 <table class="table table-striped table-hover table-responsive datatable" id="datatable">
                     <thead>

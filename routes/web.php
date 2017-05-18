@@ -22,9 +22,7 @@ Route::get('/contacts', function () {
     return view('contacts');
 })->name('contacts');
 
-Route::get('/scheme_page', function () {
-    return view('scheme_page');
-})->name('scheme_page');
+Route::get('/scheme_page', 'Admin\ReviewController@getAll')->name('scheme_page');
 
 Route::get('/visa_page', function () {
     return view('visa_page');

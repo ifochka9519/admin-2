@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-sm-10 col-sm-offset-2">
-        <h1>{{ trans('quickadmin::templates.templates-view_edit-edit') }}</h1>
+        <h1>Редактировать</h1>
 
         @if ($errors->any())
         	<div class="alert alert-danger">
@@ -33,6 +33,9 @@
 </div><div class="form-group">
     {!! Form::label('photo', 'Фото', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
+        @if($review->photo != '')
+            <img src="/{{$review->photo}}" alt="">
+        @endif
         {!! Form::file('photo') !!}
         {!! Form::hidden('photo_w', 4096) !!}
         {!! Form::hidden('photo_h', 4096) !!}

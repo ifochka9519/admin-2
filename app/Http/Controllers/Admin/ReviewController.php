@@ -47,9 +47,28 @@ class ReviewController extends Controller {
 	 */
 	public function store(CreateReviewRequest $request)
 	{
-	    $request = $this->saveFiles($request);
-		Review::create($request->all());
 
+	    $review = new Review();
+	    $review->text = $request['text'];
+	    $review->author = $request['author'];
+	    $review->alt_photo = $request['alt_photo'];
+
+        if ($request->file('photo') != null) {
+
+
+            $imageName = str_random(30) . '.' .
+                $request->file('photo')->getClientOriginalExtension();
+
+            $request->file('photo')->move(
+                base_path() . '/public/img/scheme_page/', $imageName
+            );
+
+            $review->photo = '/img/scheme_page/' . $imageName;
+
+        }
+
+
+	    $review->save();
 		return redirect()->route(config('quickadmin.route').'.review.index');
 	}
 
@@ -114,4 +133,10 @@ class ReviewController extends Controller {
         return redirect()->route(config('quickadmin.route').'.review.index');
     }
 
+
+    public function getAll()
+    {
+        $reviews = Review::all();
+        return view('scheme_page')->with(['reviews'=>$reviews]);
+    }
 }
