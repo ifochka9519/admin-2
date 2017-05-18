@@ -28,6 +28,12 @@ class JobController extends Controller {
 		return view('admin.job.index', compact('job'));
 	}
 
+    public function viewAll()
+    {
+        $jobs = Job::all();
+        return view('work_page', compact('jobs'));
+	}
+
 	/**
 	 * Show the form for creating a new job
 	 *
@@ -47,8 +53,26 @@ class JobController extends Controller {
 	 */
 	public function store(CreateJobRequest $request)
 	{
-	    $request = $this->saveFiles($request);
-		Job::create($request->all());
+	    $job = new Job();
+	    $job->title = $request['title'];
+	    $job->money = $request['money'];
+	    $job->description = $request['description'];
+        if ($request->file('image') != null) {
+
+
+            $imageName = str_random(30) . '.' .
+                $request->file('image')->getClientOriginalExtension();
+
+            $request->file('image')->move(
+                base_path() . '/public/img/work_page/', $imageName
+            );
+
+            $job->way = '/img/work_page/' . $imageName;
+
+        }
+
+
+        $job->save();
 
 		return redirect()->route(config('quickadmin.route').'.job.index');
 	}

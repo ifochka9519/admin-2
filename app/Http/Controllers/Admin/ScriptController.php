@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Meta;
 use Redirect;
 use Schema;
 use App\Script;
@@ -114,4 +115,12 @@ class ScriptController extends Controller {
         return redirect()->route(config('quickadmin.route').'.script.index');
     }
 
+
+    public function makeList()
+    {
+        $script = Script::all();
+        $metas = Meta::all();
+
+        return view('index')->with(['script'=>$script,'metas'=>$metas]);
+    }
 }

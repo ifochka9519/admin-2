@@ -11,10 +11,26 @@
 |
 */
 
-
+/*
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('index');
+})->name('index');*/
+
+Route::get('/', 'Admin\ScriptController@makeList')->name('index');
+
+Route::get('/contacts', function () {
+    return view('contacts');
+})->name('contacts');
+
+Route::get('/scheme_page', function () {
+    return view('scheme_page');
+})->name('scheme_page');
+
+Route::get('/visa_page', function () {
+    return view('visa_page');
+})->name('visa_page');
+
+Route::get('/work_page', 'Admin\JobController@viewAll')->name('work_page');
 //Route::get('/mails', 'MailController@some');
 
 
@@ -39,6 +55,9 @@ Route::post('/mee', 'Admin\NewChangesUkraineController@see')->name('mee');*/
 Route::post('/admin/Timer2', 'Admin\OrdersController@timer')->name('timer2');
 Route::post('/admin/Timer3', 'Admin\OrdersController@timer3')->name('timer3');
 Route::post('/admin/Timer', 'Admin\NewChangesPolandController@timer')->name('timer');
+
+
+Route::post('/call', 'CallController@save')->name('call_me');
 
 /*
 Route::get('/ru', 'LanguageController@ru')->name('ru');

@@ -1,0 +1,341 @@
+
+@media screen and (max-width: 991px) {
+
+  /* PAGES */
+
+  #description-section .visa-img-wrapper-text {
+    font-size: 2em;
+    width: 160px;
+  }
+
+  #insurance-section .col-lg-6 {
+    padding: 10px;
+  }
+
+  .insurance-block h3{
+    font-size: 1.3em;
+  }
+
+}
+
+@media screen and (max-width: 801px) {
+
+  #banner-visa-section h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  #banner-visa-section p {
+    font-size: 1em;
+  }
+
+  a.banner-visa-section-button {
+  	font-size: 1em;
+    width: 180px;
+  }
+
+  #banner-work-section h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  #banner-work-section p {
+    font-size: 1em;
+  }
+
+  a.banner-work-section-button {
+    font-size: 1em;
+    width: 180px;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+
+  /* PAGES */
+
+  #header-section-menu {
+    display: none;
+  }
+
+  .hidden-small-screen-menu {
+    display: block;
+  }
+
+  #insurance-section .col-lg-6 {
+    padding: 40px;
+  }
+
+  .carousel-image-title {
+  	font-size: 1.5em;
+  }
+
+  .item .description {
+    padding: 10px;
+  }
+
+  .description p {
+    font-size: 1.2em;
+  }
+
+  a.carousel-image-button {
+  	font-size: 1em;
+  	width: 120px;
+    margin-top: 10px;
+  }
+
+  h2 {
+    font-size: 2.5em;
+  }
+
+  p {
+    font-size: 1em;
+    width: 100%;
+  }
+
+  .insurance-block h3{
+    font-size: 1.4em;
+  }
+
+  /* Timeline */
+
+  ul.timeline:before {
+      left: 40px;
+  }
+
+  ul.timeline > li > .timeline-panel {
+      width: calc(100% - 90px);
+      width: -moz-calc(100% - 90px);
+      width: -webkit-calc(100% - 90px);
+  }
+
+  ul.timeline > li > .timeline-badge {
+      left: 15px;
+      margin-left: 0;
+      top: 16px;
+  }
+
+  ul.timeline > li > .timeline-panel {
+      float: right;
+  }
+
+  ul.timeline > li > .timeline-panel:before {
+      border-left-width: 0;
+      border-right-width: 15px;
+      left: -15px;
+      right: auto;
+  }
+
+  ul.timeline > li > .timeline-panel:after {
+      border-left-width: 0;
+      border-right-width: 14px;
+      left: -14px;
+      right: auto;
+  }
+
+}
+
+@media screen and (max-width: 599px) {
+
+  .carousel-image-title {
+  	font-size: 1.2em;
+  }
+
+  .description p {
+    font-size: 1em;
+  }
+
+  .example-5 .email {
+    width: 800px;
+    height: 390px;
+  }
+
+  .example-5 .email .send {
+    width: 60px;
+    height: 60px;
+    font-size: 0.7em;
+    padding-top: 15px;
+  }
+
+  @-webkit-keyframes launch {
+    40%, 70% {
+      -webkit-transform: translateY(-440px) scale(1);
+              transform: translateY(-440px) scale(1);
+    }
+    70% {
+      opacity: 1;
+    }
+    71% {
+      opacity: 0;
+      -webkit-transform: translateY(-440px) scale(0.6);
+              transform: translateY(-440px) scale(0.6);
+    }
+    72% {
+      opacity: 0;
+      -webkit-transform: translateY(0px) scale(0.6);
+              transform: translateY(0px) scale(0.6);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0px) scale(1);
+              transform: translateY(0px) scale(1);
+    }
+  }
+
+  @keyframes launch {
+    0% {
+      opacity: 1;
+      -webkit-transform: translateY(0) scale(1);
+              transform: translateY(0) scale(1);
+    }
+    10%, 15% {
+      -webkit-transform: translateY(20px);
+              transform: translateY(20px);
+    }
+    40%, 70% {
+      -webkit-transform: translateY(-440px) scale(1);
+              transform: translateY(-440px) scale(1);
+    }
+    70% {
+      opacity: 1;
+    }
+    71% {
+      opacity: 0;
+      -webkit-transform: translateY(-440px) scale(0.6);
+              transform: translateY(-440px) scale(0.6);
+    }
+    72% {
+      opacity: 0;
+      -webkit-transform: translateY(0px) scale(0.6);
+              transform: translateY(0px) scale(0.6);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0px) scale(1);
+              transform: translateY(0px) scale(1);
+    }
+  }
+
+  #banner-visa-section h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  #banner-visa-section p {
+    font-size: 0.7em;
+  }
+
+  a.banner-visa-section-button {
+    font-size: 0.8em;
+    width: 150px;
+    padding: 5px 4px;
+  }
+
+  #banner-work-section h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  #banner-work-section p {
+    font-size: 0.7em;
+  }
+
+  a.banner-work-section-button {
+    font-size: 0.8em;
+    width: 150px;
+    padding: 5px 4px;
+  }
+
+}
+
+@media screen and (max-width: 499px) {
+
+  .hidden-small-screen-menu a.call-button {
+  	font-size: 0.8em;
+  	padding: 10px 7px;
+  	width: 120px;
+  	margin: 0px auto;
+  	box-shadow: 0px 15px 10px -10px rgba(0,0,0,0.3);
+    transition: all 200ms cubic-bezier(0.25, 0.39, 0.39, 2.01);
+  }
+
+  .carousel-image-title {
+  	font-size: 1.1em;
+    padding: 5px 5px;
+  }
+
+  .description {
+    height: 140px;
+  }
+
+  .description p {
+    font-size: 1em;
+  }
+
+  #description-section .visa-img-wrapper-text {
+    font-size: 1.5em;
+    width: 120px;
+  }
+
+  a.visa-country-botton {
+   font-size: 1em;
+   width: 160px;
+ }
+
+ .example-5 .email input {
+   width: 200px;
+ }
+
+}
+
+@media screen and (max-width: 382px) {
+
+  .carousel-image-title {
+  	font-size: 0.8em;
+    padding: 5px 5px;
+  }
+
+  .owl-theme .owl-controls .owl-buttons div{
+  	padding: 4px 7px;
+  	font-size: 8px;
+  }
+
+  .owl-carousel .owl-prev,
+  .owl-carousel .owl-next {
+  	top: 10px;
+  	height: 20px;
+  }
+
+  #banner-visa-section h3 {
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  #banner-visa-section p {
+    font-size: 0.7em;
+    display: none;
+  }
+
+  a.banner-visa-section-button {
+    font-size: 0.8em;
+    width: 150px;
+    padding: 5px 4px;
+  }
+
+  #banner-work-section h3 {
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  #banner-work-section p {
+    font-size: 0.7em;
+    display: none;
+  }
+
+  a.banner-work-section-button {
+    font-size: 0.8em;
+    width: 150px;
+    padding: 5px 4px;
+  }
+
+}

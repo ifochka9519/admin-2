@@ -1,0 +1,79 @@
+
+.owl-carousel {
+	margin: 0;
+}
+
+.owl-carousel .owl-nav [class*=owl-] {
+	background: rgba(0, 0, 0, 0.5);
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 11px;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 0;
+	text-align: center;
+}
+
+.owl-carousel .owl-nav [class*=owl-]:hover {
+	background: rgba(0, 0, 0, 0.9);
+	color: #FFF;
+}
+
+.owl-carousel .owl-prev,
+.owl-carousel .owl-next {
+	position: absolute;
+	top: 20px;
+	height: 30px;
+	margin: auto !important;
+}
+
+.owl-carousel .owl-prev {
+	right: 55px;
+}
+
+.owl-carousel .owl-next {
+	right: 20px;
+}
+
+.owl-carousel .owl-dots {
+	display: none !important;
+}
+
+
+
+#owl-1 {
+  margin-bottom: 0px;
+}
+
+#owl-1 .item {
+
+}
+
+#owl-1 .item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#owl-2  {
+	margin-top: 50px;
+}
+
+#owl-2 img {
+	margin: 0 auto;
+}
+
+#owl-2 .item p {
+	font-family: 'Open Sans', sans-serif;
+  text-align: left;
+	width: 100%;
+	margin-top: 30px;
+}
+
+#owl-2 .item h3 {
+	font-family: 'Open Sans', sans-serif;
+  text-align: left;
+	width: 800px;
+	margin-top: 30px;
+	text-align: right;
+}

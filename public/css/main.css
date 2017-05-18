@@ -1,0 +1,140 @@
+
+/* Header section */
+
+/*Arrows*/
+
+section#section010 {
+	position: relative;
+}
+
+#section10 a {
+	padding-top: 80px;
+}
+
+#section10 a span {
+	position: absolute;
+	left: 50%;
+	bottom: 70px;
+	width: 50px;
+	height: 70px;
+	margin-left: -25px;
+	border: 2px solid #fff;
+	border-radius: 50px;
+	box-sizing: border-box;
+	margin-top: 50px;
+}
+
+#section10 a span::before {
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	content: '';
+	width: 6px;
+	height: 6px;
+	margin-left: -3px;
+	background-color: #fff;
+	border-radius: 100%;
+	-webkit-animation: sdb10 2s infinite;
+	animation: sdb10 2s infinite;
+	box-sizing: border-box;
+}
+
+@-webkit-keyframes sdb10 {
+	0% {
+		-webkit-transform: translate(0, 0);
+		opacity: 0;
+	}
+	40% {
+		opacity: 1;
+	}
+	80% {
+		-webkit-transform: translate(0, 20px);
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes sdb10 {
+	0% {
+		transform: translate(0, 0);
+		opacity: 0;
+	}
+	40% {
+		opacity: 1;
+	}
+	80% {
+		transform: translate(0, 20px);
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+/*End arrow*/
+
+/* Menu */
+
+nav.menu {
+	position: fixed;
+	z-index: 999;
+	color: white;
+	width: 100%;
+}
+
+nav.menu ul {
+	margin: 0 auto;
+	text-align: center;
+}
+
+nav.menu ul li {
+ 	display: inline-block;
+ 	margin: 15px 15px;
+ 	padding-top: 25px;
+ 	cursor: pointer;
+}
+
+nav.menu ul li a {
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1em;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	-webkit-transition: all .35s;
+    -o-transition: all .35s;
+    transition: all .35s;
+}
+
+nav.menu ul li a:hover {
+	color: #566ca8;
+}
+
+/* End Menu */
+
+#header-section .about-us-button {
+	border-right: 2px;
+	background-color: #566ca8;
+	display: block;
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1em;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	padding: 15px 10px;
+	width: 240px;
+	margin: 20px auto;
+	box-shadow: 0px 15px 10px -10px rgba(0,0,0,0.3);
+  	transition: all 200ms cubic-bezier(0.25, 0.39, 0.39, 2.01);
+}
+
+#header-section .about-us-button:hover {
+	transform: scale(1.05);
+  	box-shadow: 0px 25px 15px -15px rgba(0,0,0,0.3);
+}
+
+/*End Header section*/
+
+/*  */
